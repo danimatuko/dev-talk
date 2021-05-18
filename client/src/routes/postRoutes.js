@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const { db } = require("../db");
+const { db } = require("../../db");
 
 router.get("/", (req, res) => {
 	db.query("SELECT * FROM posts", (err, result) => {

@@ -1,22 +1,18 @@
 import "./App.css";
-import NavBar from "./componenets/layout/navBar/NavBar.jsx";
-import MostViewedList from "./componenets/posts/MostViewedList.jsx";
+import HomePage from "./componenets/pages/HomePage";
+import { Switch, Route } from "react-router-dom";
+import NewPost from "./componenets/pages/NewPost";
+import NavBar from "./componenets/layout/navBar/NavBar";
 
 const App = () => {
 	return (
 		<div className="App">
 			<NavBar />
-			<div className="container">
-				<h1 class="text-center mb-5">Most Viewed</h1>
-
-				<div class="row">
-					<div class="col"></div>
-					<div class="col-6">
-						<MostViewedList />
-					</div>
-					<div class="col"></div>
-				</div>
-			</div>
+			<Switch>
+				<Route path="/about"></Route>
+				<Route path="/new-post" component={NewPost} />
+				<Route path="/" component={HomePage} />
+			</Switch>
 		</div>
 	);
 };

@@ -23,13 +23,7 @@ const MostViewedList = () => {
 		<div>
 			{posts != null &&
 				posts.map((post) => {
-					return (
-						<MostViewed
-							key={post.post_id}
-							title={post.title}
-							body={post.body}
-						/>
-					);
+					return <MostViewed key={post.post_id} post={post} />;
 				})}
 		</div>
 	);

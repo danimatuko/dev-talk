@@ -1,14 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import ProfileMenu from "../profileMenu/ProfileMenu";
 
 const NavBar = () => {
 	return (
 		<nav
 			className="navbar navbar-expand-lg mb-5"
 			style={{ backgroundColor: "#eee" }}>
-			<div className="container-fluid">
-				<a className="navbar-brand text-dark" href="#">
+			<div className="container">
+				<Link className="navbar-brand text-dark" to="/">
 					Nature-Story
-				</a>
+				</Link>
 				<button
 					className="navbar-toggler"
 					type="button"
@@ -24,19 +26,20 @@ const NavBar = () => {
 					id="navbarNav">
 					<ul className="navbar-nav">
 						<li className="nav-item">
-							<a
+							<Link
 								className="nav-link text-dark active"
-								aria-current="page"
-								href="#">
+								to="/home">
 								Home
-							</a>
+							</Link>
 						</li>
+
 						<li className="nav-item">
-							<a className="nav-link text-dark" href="#">
+							<Link className="nav-link text-dark " to="/about">
 								About
-							</a>
+							</Link>
 						</li>
 					</ul>
+					<ProfileMenu />
 				</div>
 			</div>
 		</nav>

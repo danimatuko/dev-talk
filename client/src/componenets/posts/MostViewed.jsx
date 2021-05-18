@@ -1,7 +1,7 @@
 import React from "react";
 
-const MostViewed = (props) => {
-	const { post_id, title, body } = props;
+const MostViewed = ({ post_id, post }) => {
+	const { title, body, author, date } = post;
 	return (
 		<div className="card mb-3">
 			<img
@@ -12,14 +12,14 @@ const MostViewed = (props) => {
 			<div className="card-body">
 				<h2 className="card-title h3">{title}</h2>
 				<p className="lead">{body}</p>
-				<span className="text-dark"> Dani Matuko</span>
+				<span className="text-dark">{author}</span>
 				<p className="card-text">
 					<small className="text-muted">
-						Last updated 3 mins ago
+						Last updated at: {date}
 					</small>
 				</p>
 				<a href="#" className="btn btn-primary">
-					Go somewhere
+					Read More
 				</a>
 			</div>
 		</div>
