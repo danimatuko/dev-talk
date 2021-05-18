@@ -10,8 +10,9 @@ const MostViewed = (props) => {
 				alt="..."
 			/>
 			<div className="card-body">
-				<h5 className="card-title">{title}</h5>
-				<p className="card-text">{body}</p>
+				<h2 className="card-title h3">{title}</h2>
+				<p className="lead">{body}</p>
+				<span className="text-dark"> Dani Matuko</span>
 				<p className="card-text">
 					<small className="text-muted">
 						Last updated 3 mins ago
