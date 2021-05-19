@@ -1,4 +1,5 @@
 const { db } = require("../db");
+const jwt = require("jsonwebtoken");
 
 // REGISTER
 const register = (req, res) => {
@@ -9,10 +10,16 @@ const register = (req, res) => {
 		if (err) {
 			res.json(err);
 		} else {
-			res.json({
-				msg: "Registration completed successfully",
-				user: { first_name: user.first_name, last_name: user.last_name }
-			});
+			// create JWT
+			payload = {
+				first_name: user.first_name,
+				last_name: user.last_name,
+				email: user.email
+			};
+
+			const token = jwt.sign(payload, "jwtSecret");
+			// set token in header
+			res.header("x-auth-token", token).json(token);
 		}
 	});
 };
@@ -22,8 +29,7 @@ const login = (req, res) => {
 	const email = req.body.email;
 	const password = req.body.password;
 
-	const sql = 
-    `SELECT first_name,last_name,email 
+	const sql = `SELECT first_name,last_name,email 
     FROM users 
     WHERE email='${email}' 
     AND password='${password}'`;
@@ -32,10 +38,15 @@ const login = (req, res) => {
 		if (err) {
 			res.json(err);
 		} else {
-			res.json({
-				msg: `Hi ${result[0].first_name} ${result[0].last_name}`,
-				user: { result }
-			});
+			// create and return a JWT
+			payload = {
+				first_name: result[0].first_name,
+				last_name: result[0].last_name,
+				email: result[0].email
+			};
+			const token = jwt.sign(payload, "jwtSecret");
+			// set token in header
+			res.header("x-auth-token", token).json(token);
 		}
 	});
 };
