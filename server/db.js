@@ -14,6 +14,10 @@ const connectToDb = () => {
 		if (!err) console.log("Connection Established Successfully");
 		else console.log("Connection Failed! " + err);
 	});
+
+	db.on("error", (err) => {
+		console.log("[mysql error]", err);
+	});
 };
 
 module.exports = { db, connectToDb };

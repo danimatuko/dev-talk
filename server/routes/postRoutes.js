@@ -6,7 +6,6 @@ const {
 	deletePost
 } = require("../controllers/postController");
 const router = express.Router();
-const { db } = require("../db");
 
 // GET ALL POSTS
 router.get("/", getAllPosts);
