@@ -10,7 +10,7 @@ const ProfileMenu = () => {
 				id="dropdownMenuLink"
 				data-bs-toggle="dropdown"
 				aria-expanded="false">
-				<i class="fas fa-user-circle"></i>
+				<i className="fas fa-user-circle"></i>
 			</a>
 
 			<ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
