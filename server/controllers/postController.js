@@ -30,7 +30,7 @@ const addPost = (req, res) => {
 };
 
 // UPDATE POST
-const updatePost = (req, res) => {
+const updatePost = (req, res) => { 
 	const sql = `UPDATE posts SET ? WHERE post_id= ${req.params.id}`;
 	const post = req.body;
 	// update current date

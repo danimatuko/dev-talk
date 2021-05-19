@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 
 const CreatePostForm = () => {
+	// react-hook-form -> useForm hook
 	const {
 		register,
 		handleSubmit,
@@ -13,20 +14,19 @@ const CreatePostForm = () => {
 		resolver: yupResolver(newPostSchema)
 	});
 
+	// add post to DB
 	const addPost = async (post) => {
 		try {
-			console.log("addPost");
 			await axios.post("/posts", post);
 		} catch (error) {
 			console.log(console.error());
 		}
 	};
-
+	
+	// handle submit
 	const onFormSubmit = (post, e) => {
 		post.author = "DANI MATUKO";
-		const { title, body, author } = post;
-
-		addPost({ author, title, body });
+		addPost(post);
 		// reset after form submit
 		e.target.reset();
 	};
@@ -63,17 +63,17 @@ const CreatePostForm = () => {
 			</div>
 
 			<div className="mb-3">
-				<label htmlFor="image" className="form-label">
+				<label htmlFor="imageUrl" className="form-label">
 					Add Image (optional)
 				</label>
 				<input
 					type="text"
 					className="form-control"
-					id="image"
-					name="image"
-					{...register("image")}
+					id="imageUrl"
+					name="imageUrl"
+					{...register("imageUrl")}
 				/>
-				<p className="text-danger">{errors.image?.message}</p>
+				<p className="text-danger">{errors.imageUrl?.message}</p>
 			</div>
 
 			<button type="submit" className="btn btn-success">

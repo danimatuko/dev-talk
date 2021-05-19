@@ -12,8 +12,7 @@ const MostViewedList = () => {
 	const getMostViewedPosts = async () => {
 		try {
 			const res = await axios.get("/posts");
-			const posts = res.data;
-			setPosts(posts);
+			setPosts(res.data);
 		} catch (error) {
 			console.error("error in getMostViewPosts \n" + error);
 		}
