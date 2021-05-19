@@ -1,19 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import newPostSchema from "./newPostSchema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import axios from "axios";
 
 const CreatePostForm = () => {
-	const initialState = {
-		title: "",
-		body: "",
-		image: ""
-	};
-
-	const onFormSubmit = (post) => {
-		console.log(post);
-	};
-
 	const {
 		register,
 		handleSubmit,
@@ -21,6 +12,24 @@ const CreatePostForm = () => {
 	} = useForm({
 		resolver: yupResolver(newPostSchema)
 	});
+
+	const addPost = async (post) => {
+		try {
+			console.log("addPost");
+			await axios.post("/posts", post);
+		} catch (error) {
+			console.log(console.error());
+		}
+	};
+
+	const onFormSubmit = (post, e) => {
+		post.author = "DANI MATUKO";
+		const { title, body, author } = post;
+
+		addPost({ author, title, body });
+		// reset after form submit
+		e.target.reset();
+	};
 
 	return (
 		<form onSubmit={handleSubmit(onFormSubmit)}>
