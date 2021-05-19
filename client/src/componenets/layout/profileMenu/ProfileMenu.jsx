@@ -4,19 +4,19 @@ const ProfileMenu = () => {
 	return (
 		<div className="nav-item dropdown ">
 			<a 
-				className="dropdown-toggle text-dark"
+				className="dropdown-toggle text-dark mx-1"
 				href="#"
 				role="button"
 				id="dropdownMenuLink"
 				data-bs-toggle="dropdown"
 				aria-expanded="false">
-				<i className="fas fa-user-circle"></i>
+				<i className="fas fa-user-circle fa-2x"></i>
 			</a>
 
 			<ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
 				<li>
 					<a className="dropdown-item" href="#">
-						Login
+						Logout
 					</a>
 				</li>
 				<li>
