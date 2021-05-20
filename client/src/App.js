@@ -3,6 +3,7 @@ import HomePage from "./componenets/pages/HomePage";
 import { Switch, Route } from "react-router-dom";
 import NewPost from "./componenets/pages/NewPost";
 import NavBar from "./componenets/layout/navBar/NavBar";
+import LoginForm from "./componenets/pages/login/LoginForm";
 
 const App = () => {
 	return (
@@ -11,6 +12,7 @@ const App = () => {
 			<Switch>
 				<Route path="/about"></Route>
 				<Route path="/new-post" component={NewPost} />
+				<Route path="/login" component={LoginForm} />
 				<Route path="/" component={HomePage} />
 			</Switch>
 		</div>

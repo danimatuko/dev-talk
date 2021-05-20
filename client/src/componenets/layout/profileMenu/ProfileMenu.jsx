@@ -3,7 +3,7 @@ import React from "react";
 const ProfileMenu = () => {
 	return (
 		<div className="nav-item dropdown ">
-			<a 
+			<a
 				className="dropdown-toggle text-dark mx-1"
 				href="#"
 				role="button"

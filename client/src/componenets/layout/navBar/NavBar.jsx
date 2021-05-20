@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ProfileMenu from "../profileMenu/ProfileMenu";
 
+
 const NavBar = () => {
 	return (
 		<nav className="navbar navbar-expand-lg mb-5" style={{ backgroundColor: "#eee" }}>
