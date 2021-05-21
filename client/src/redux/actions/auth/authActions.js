@@ -1,4 +1,5 @@
 import axios from "axios";
+import setAuthToken from "../../../helpers/setAuthToken";
 import authTypes from "./authTypes";
 
 export const login = (data) => {
@@ -11,9 +12,8 @@ export const login = (data) => {
 			dispatch({
 				type: authTypes.LOGIN_SUCCESS,
 				payload: {
-					token: res.data,
-					isLoggedIn: true,
-					isLoading: false
+					token: res.data.token,
+					userInfo: res.data.user
 				}
 			});
 		} catch (error) {
@@ -22,6 +22,43 @@ export const login = (data) => {
 			});
 			console.log("Server Error \n" + error);
 		}
+	};
+};
+
+export const getLoggedInUser = (data) => {
+	/* To dispatch an aysnc action we use `redux-thunk` middleware, 
+	which allows to return a function instead of an action object.
+	The function gets the `dispatch` as an argument. */
+	return async (dispatch) => {
+		const token = localStorage.token;
+		if (localStorage.token) setAuthToken(token);
+		try {
+			const res = await axios.get("/user/auth");
+			dispatch({
+				type: authTypes.AUTH_SUCCESS,
+				payload: {
+					userInfo: res.data,
+					isLoggedIn: true,
+					isLoading: false
+				}
+			});
+		} catch (error) {
+			dispatch({
+				type: authTypes.AUTH_FAIL,
+				payload: {
+					userInfo: null,
+					isLoggedIn: null,
+					isLoading: null
+				}
+			});
+		}
+	};
+};
+
+export const logout = () => {
+	localStorage.removeItem("token");
+	return {
+		type: authTypes.LOGOUT
 	};
 };
 

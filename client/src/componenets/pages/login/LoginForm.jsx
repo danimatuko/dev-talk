@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import loginSchema from "./loginSchema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch } from "react-redux";
-import { login, setLoadingUser } from "../../../redux/actions/auth/authActions";
-const LoginForm = () => {
+import { getLoggedInUser, login, setLoadingUser } from "../../../redux/actions/auth/authActions";
+const LoginForm = ({ history }) => {
 	const dispatch = useDispatch((state) => state.authState);
+
+	useEffect(() => {
+		dispatch(getLoggedInUser());
+	}, []);
 
 	// react-hook-form -> useForm hook
 	const {
@@ -23,6 +27,7 @@ const LoginForm = () => {
 		dispatch(login(data));
 		// reset after form submit
 		e.target.reset();
+		history.push("/");
 	};
 
 	return (

@@ -4,8 +4,18 @@ import { Switch, Route } from "react-router-dom";
 import NewPost from "./componenets/pages/NewPost";
 import NavBar from "./componenets/layout/navBar/NavBar";
 import LoginForm from "./componenets/pages/login/LoginForm";
+import { useDispatch, useSelector } from "react-redux";
+import { getLoggedInUser } from "./redux/actions/auth/authActions";
+import { useEffect, useState } from "react";
 
 const App = () => {
+	const dispatch = useDispatch();
+	const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
+	useEffect(() => {
+		dispatch(getLoggedInUser());
+	}, []);
+
 	return (
 		<div className="App">
 			<NavBar />

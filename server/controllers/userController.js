@@ -45,8 +45,7 @@ const login = (req, res) => {
 				email: result[0].email
 			};
 			const token = jwt.sign(payload, "jwtSecret");
-			// set token in header
-			res.header("x-auth-token", token).json(token);
+			res.json({ token: token, user: result[0] });
 		}
 	});
 };
