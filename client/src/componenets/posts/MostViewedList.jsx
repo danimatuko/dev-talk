@@ -4,21 +4,28 @@ import axios from "axios";
 
 const MostViewedList = () => {
 	const [posts, setPosts] = useState(null);
-
-	useEffect(() => {
-		getMostViewedPosts();
-	}, [posts]);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const getMostViewedPosts = async () => {
+		setIsLoading(true);
+
 		try {
 			const res = await axios.get("/posts");
-			setPosts(res.data);
+			const mostViewedPosts = res.data;
+			setPosts(mostViewedPosts);
+			setIsLoading(false);
 		} catch (error) {
 			console.error("error in getMostViewPosts \n" + error);
 		}
 	};
 
-	return (
+	useEffect(() => {
+		getMostViewedPosts();
+	}, []);
+
+	return isLoading === true ? (
+		<div>isLoading...</div>
+	) : (
 		<div>
 			{posts != null &&
 				posts.map((post) => {

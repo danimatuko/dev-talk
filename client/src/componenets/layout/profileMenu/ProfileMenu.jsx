@@ -20,7 +20,7 @@ const ProfileMenu = () => {
 					</a>
 				</li>
 				<li>
-					<a className="dropdown-item" href="/new-post">
+					<a className="dropdown-item" href="posts/new-post">
 						Add Post
 					</a>
 				</li>

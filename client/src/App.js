@@ -11,7 +11,7 @@ const App = () => {
 			<NavBar />
 			<Switch>
 				<Route path="/about"></Route>
-				<Route path="/new-post" component={NewPost} />
+				<Route path="/posts/new-post" component={NewPost} />
 				<Route path="/login" component={LoginForm} />
 				<Route path="/" component={HomePage} />
 			</Switch>

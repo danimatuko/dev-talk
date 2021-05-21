@@ -14,13 +14,13 @@ const getAllPosts = (req, res) => {
 };
 
 // ADD POST
-const addPost = (req, res) => {
+const addPost = async (req, res) => {
 	const sql = "INSERT INTO posts SET ?";
 	const post = req.body;
 	// add current date
 	post.date = getCurrentDate();
 
-	db.query(sql, post, (err, result) => {
+	 db.query(sql, post, (err, result) => {
 		if (err) {
 			res.json(err);
 		} else {
@@ -30,7 +30,7 @@ const addPost = (req, res) => {
 };
 
 // UPDATE POST
-const updatePost = (req, res) => { 
+const updatePost = (req, res) => {
 	const sql = `UPDATE posts SET ? WHERE post_id= ${req.params.id}`;
 	const post = req.body;
 	// update current date
