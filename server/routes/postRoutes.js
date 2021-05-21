@@ -1,14 +1,15 @@
+const { json } = require("express");
 const express = require("express");
 const { addPost, updatePost, getAllPosts, deletePost } = require("../controllers/postController");
+const auth = require("../middlewares/auth");
 const router = express.Router();
 
 // GET ALL POSTS
 router.get("/", getAllPosts);
 // NEW POST
-router.get("/new-post", (req, res) => {
-	console.log("new post");
-	res.send("token");
-});
+// router.get("/new-post", auth, (req, res) => {
+// 	res.json({ newPost: "new" });
+// });
 // ADD POST
 router.post("/", addPost);
 // UPDATE POST

@@ -9,10 +9,11 @@ const initialState = {
 const authReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case authTypes.LOGIN_SUCCESS:
+			localStorage.setItem("token", action.payload.token);
 			return {
 				...state,
 				isLoggedIn: true,
-				token: action.payload,
+				token: action.payload.token,
 				isLoading: false
 			};
 		case authTypes.LOGIN_FAIL:

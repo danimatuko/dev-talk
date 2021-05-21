@@ -1,9 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ProfileMenu from "../profileMenu/ProfileMenu";
 
-
 const NavBar = () => {
+	const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
 	return (
 		<nav className="navbar navbar-expand-lg mb-5" style={{ backgroundColor: "#eee" }}>
 			<div className="container">
@@ -32,22 +34,27 @@ const NavBar = () => {
 								About
 							</Link>
 						</li>
-						<li className="nav-item  ">
-							<Link
-								className="nav-link text-dark border border-dark rounded-3 mx-1"
-								to="/register">
-								Sign-up
-							</Link>
-						</li>
-						<li className="nav-item">
-							<Link
-								className="nav-link text-dark border border-dark rounded-3 mx-1"
-								to="/login">
-								Login
-							</Link>
-						</li>
+						{isLoggedIn ? (
+							<ProfileMenu />
+						) : (
+							<>
+								<li className="nav-item  ">
+									<Link
+										className="nav-link text-dark border border-dark rounded-3 mx-1"
+										to="/register">
+										Sign-up
+									</Link>
+								</li>
+								<li className="nav-item">
+									<Link
+										className="nav-link text-dark border border-dark rounded-3 mx-1"
+										to="/login">
+										Login
+									</Link>
+								</li>
+							</>
+						)}
 					</ul>
-					<ProfileMenu />
 				</div>
 			</div>
 		</nav>
