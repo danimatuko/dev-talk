@@ -10,12 +10,12 @@ import { useEffect, useState } from "react";
 import Dashboard from "./componenets/pages/dashboard/Dashboard";
 
 const App = () => {
-	// const dispatch = useDispatch();
-	// const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+	const dispatch = useDispatch();
+	const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
-	// useEffect(() => {
-	// 	dispatch(getLoggedInUser());
-	// }, []);
+	useEffect(() => {
+		dispatch(getLoggedInUser());
+	}, []);
 
 	return (
 		<div className="App">
@@ -24,7 +24,10 @@ const App = () => {
 				<Route path="/about"></Route>
 				<Route path="/login" component={LoginForm} />
 				<Route path="/profile/dashboard" component={Dashboard} />
-				<Route path="/posts/new-post" component={NewPost} />
+				<Route
+					path={["/posts/new-post", "/posts/edit-post/:post_id"]}
+					component={NewPost}
+				/>
 				<Route path="/" component={HomePage} />
 			</Switch>
 		</div>

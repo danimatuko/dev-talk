@@ -23,7 +23,7 @@ router.post("/", (req, res) => {
 	});
 });
 
-router.put("/:id", (req, res) => {
+router.put("/:post_id", (req, res) => {
 	const updateQuery = "UPDATE posts SET title = ?, body = ? WHERE post_id= ?";
 	db.query(
 		updateQuery,

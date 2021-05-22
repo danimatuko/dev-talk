@@ -14,6 +14,18 @@ const getAllPosts = (req, res) => {
 	});
 };
 
+// GET POST BY ID
+const getPostById = (req, res) => {
+	const sql = `SELECT * FROM posts WHERE post_id='${req.params.post_id}'`;
+	db.query(sql, (err, result) => {
+		if (err) {
+			res.json(err);
+		} else {
+			res.json(result[0]);
+		}
+	});
+};
+
 // ADD POST
 const addPost = async (req, res) => {
 	// prepare query
@@ -44,7 +56,7 @@ const addPost = async (req, res) => {
 
 // UPDATE POST
 const updatePost = (req, res) => {
-	const sql = `UPDATE posts SET ? WHERE post_id= ${req.params.id}`;
+	const sql = `UPDATE posts SET ? WHERE post_id='${req.params.post_id}'`;
 	const post = req.body;
 	// update current date
 	post.date = getCurrentDate();
@@ -53,7 +65,7 @@ const updatePost = (req, res) => {
 		if (err) {
 			res.json(err);
 		} else {
-			res.json({ msg: "post edited successfully", post: req.body });
+			res.json({ msg: "post edited successfully", post: post });
 		}
 	});
 };
@@ -72,4 +84,4 @@ const deletePost = (req, res) => {
 	});
 };
 
-module.exports = { getAllPosts, addPost, updatePost, deletePost };
+module.exports = { getAllPosts, getPostById, addPost, updatePost, deletePost };

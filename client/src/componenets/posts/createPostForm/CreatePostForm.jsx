@@ -1,28 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import newPostSchema from "./newPostSchema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "react-redux";
-import { addPost } from "../../../redux/post/postActions";
+import { addPost, editPost } from "../../../redux/post/postActions";
+import { useParams } from "react-router";
+import axios from "axios";
 
 const CreatePostForm = ({ history }) => {
+	// Redux hooks
 	const dispatch = useDispatch();
 	const editMode = useSelector((state) => state.post.editMode);
+	// React hooks
+	const { post_id } = useParams();
+	useEffect(() => {
+		editMode && getPostById(post_id);
+	}, []);
 
 	// react-hook-form -> useForm hook
 	const {
 		register,
 		handleSubmit,
+		setValue,
 		formState: { errors }
 	} = useForm({
 		resolver: yupResolver(newPostSchema)
 	});
 
+	const getPostById = async (post_id) => {
+		try {
+			const res = await axios.get(`/posts/${post_id}`);
+			populateFormData(res.data);
+		} catch (error) {
+			console.log(error.message);
+		}
+	};
+	const populateFormData = (data) => {
+		// map the post object to a key => value pairs.
+		// The 'setValue' hook from 'react-hook-form',
+		// requires a key=>value to change value programmatically.
+		const formFileds = Object.entries(data).map(([key, value]) => ({ key, value }));
+		setValue(formFileds.forEach(({ key, value }) => setValue(key, value)));
+	};
 	// handle submit
 	const onFormSubmit = (post, e) => {
-		post.author = "DANI MATUKO";
 		// add post to DB
-		dispatch(addPost(post));
+		editMode ? dispatch(editPost(post)) : dispatch(addPost(post));
 		// reset after form submit
 		e.target.reset();
 		history.push("/");

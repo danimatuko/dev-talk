@@ -17,12 +17,12 @@ const Dashboard = () => {
 			<h2 className="fs-5">
 				Welcome {first_name} {last_name}
 			</h2>
-			<div class="container">
-				<div class="row">
-					<div class="col-9">
+			<div className="container">
+				<div className="row">
+					<div className="col-9">
 						<DashboardTable />
 					</div>
-					<div class="col-3">Column</div>
+					<div className="col-3">Column</div>
 				</div>
 			</div>
 		</div>
