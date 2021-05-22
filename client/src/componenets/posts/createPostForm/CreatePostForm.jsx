@@ -2,11 +2,13 @@ import React from "react";
 import newPostSchema from "./newPostSchema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addPost } from "../../../redux/post/postActions";
 
 const CreatePostForm = ({ history }) => {
 	const dispatch = useDispatch();
+	const editMode = useSelector((state) => state.post.editMode);
+
 	// react-hook-form -> useForm hook
 	const {
 		register,
@@ -72,7 +74,7 @@ const CreatePostForm = ({ history }) => {
 			</div>
 
 			<button type="submit" className="btn btn-success">
-				Create Post
+				{editMode ? "Edit Post" : "Add Post"}
 			</button>
 		</form>
 	);

@@ -3,7 +3,8 @@ import postTypes from "./postTypes";
 const initialState = {
 	tite: "",
 	body: "",
-	imageUrl: ""
+	imageUrl: "",
+	editMode: false
 };
 
 const postReducer = (state = initialState, action) => {
@@ -21,6 +22,11 @@ const postReducer = (state = initialState, action) => {
 				title: "",
 				body: "",
 				imageUrl: ""
+			};
+		case postTypes.SET_EDIT_MODE:
+			return {
+				...state,
+				editMode: action.payload
 			};
 		default:
 			return state;

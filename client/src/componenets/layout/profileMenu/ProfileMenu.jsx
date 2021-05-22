@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { getLoggedInUser, logout } from "../../../redux/auth/authActions";
+import { setEditMode } from "../../../redux/post/postActions";
 
 const ProfileMenu = () => {
 	useEffect(() => {
 		dispatch(getLoggedInUser());
-
 	}, []);
 
 	const {
@@ -41,7 +41,10 @@ const ProfileMenu = () => {
 					</Link>
 				</li>
 				<li>
-					<Link className="dropdown-item" to="posts/new-post">
+					<Link
+						className="dropdown-item"
+						to="/posts/new-post"
+						onClick={() => dispatch(setEditMode({ editMode: false }))}>
 						Add Post
 					</Link>
 				</li>

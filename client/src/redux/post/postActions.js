@@ -21,6 +21,12 @@ export const addPost = (post) => {
 	};
 };
 
+export const setEditMode = (state) => {
+	return {
+		type: postTypes.SET_EDIT_MODE,
+		payload: state.editMode
+	};
+};
 // export const setLoadingUser = () => {
 // 	return { type: authTypes.SET_LOADING_USER };
 // };
