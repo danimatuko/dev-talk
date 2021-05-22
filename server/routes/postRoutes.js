@@ -1,4 +1,3 @@
-const { json } = require("express");
 const express = require("express");
 const { addPost, updatePost, getAllPosts, deletePost } = require("../controllers/postController");
 const auth = require("../middlewares/auth");
@@ -11,7 +10,7 @@ router.get("/", getAllPosts);
 // 	res.json({ newPost: "new" });
 // });
 // ADD POST
-router.post("/",auth, addPost);
+router.post("/", auth, addPost);
 // UPDATE POST
 router.put("/:id", updatePost);
 // DELETE POST

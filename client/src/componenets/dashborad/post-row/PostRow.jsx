@@ -1,11 +1,11 @@
 import React from "react";
 
-const PostRow = () => {
+const PostRow = ({ index, post: { post_id, title, date } }) => {
 	return (
 		<tr>
-			<th scope="row">1</th>
-			<td>Mark</td>
-			<td>22/5/2021</td>
+			<th scope="row">{index+1}</th>
+			<td>{title}</td>
+			<td>{date}</td>
 			<td>True</td>
 			<td>
 				<button className="btn btn-success btn-sm mx-1">Edit</button>

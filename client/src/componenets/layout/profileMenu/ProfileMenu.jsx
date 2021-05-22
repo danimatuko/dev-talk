@@ -6,6 +6,7 @@ import { getLoggedInUser, logout } from "../../../redux/auth/authActions";
 const ProfileMenu = () => {
 	useEffect(() => {
 		dispatch(getLoggedInUser());
+		
 	}, []);
 
 	const {
@@ -45,7 +46,7 @@ const ProfileMenu = () => {
 					</Link>
 				</li>
 				<li>
-					<Link className="dropdown-item" to="/dashboard">
+					<Link className="dropdown-item" to="/profile/dashboard">
 						Dashboard
 					</Link>
 				</li>

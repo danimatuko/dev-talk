@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getUsersPosts } from "../../../redux/profile/profileActions";
 import DashboardTable from "../../dashborad/dashborad-table/DashboardTable";
 
 const Dashboard = () => {
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(getUsersPosts());
+	}, []);
+
 	return (
 		<div className="container">
 			<h1 className="display-1">Dashboard</h1>

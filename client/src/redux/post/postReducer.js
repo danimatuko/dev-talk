@@ -1,4 +1,3 @@
-import React from "react";
 import postTypes from "./postTypes";
 
 const initialState = {

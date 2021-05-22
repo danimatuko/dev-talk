@@ -1,0 +1,7 @@
+const profileTypes = {
+	SET_IS_LOADING: "SET_IS_LOADING",
+	GET_USERS_POSTS_SUCCESS: "GET_USERS_POSTS_SUCCESS",
+	GET_USERS_POSTS_FAIL: "GET_USERS_POSTS_FAIL"
+};
+
+module.exports = profileTypes;

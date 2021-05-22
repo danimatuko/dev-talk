@@ -2,7 +2,6 @@ import React from "react";
 import newPostSchema from "./newPostSchema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addPost } from "../../../redux/post/postActions";
 

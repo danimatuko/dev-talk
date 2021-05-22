@@ -37,12 +37,11 @@ const login = (req, res) => {
 	const email = req.body.email;
 	const password = req.body.password;
 
-	const sql = 
-	`SELECT first_name,last_name,email,user_id
+	const sql = `SELECT first_name,last_name,email,user_id
     FROM users 
     WHERE email='${email}' 
     AND password='${password}'`;
- 
+
 	db.query(sql, (err, result) => {
 		if (err) {
 			res.json(err);
