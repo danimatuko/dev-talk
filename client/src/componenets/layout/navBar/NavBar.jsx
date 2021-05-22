@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import ProfileMenu from "../profileMenu/ProfileMenu";
 
 const NavBar = () => {
-	const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+	const { isLoggedIn, isLoading } = useSelector((state) => state.auth);
 
 	return (
 		<nav className="navbar navbar-expand-lg mb-5" style={{ backgroundColor: "#eee" }}>
@@ -37,7 +37,7 @@ const NavBar = () => {
 								About
 							</Link>
 						</li>
-						{isLoggedIn ? (
+						{!isLoading && isLoggedIn ? (
 							<ProfileMenu />
 						) : (
 							<>

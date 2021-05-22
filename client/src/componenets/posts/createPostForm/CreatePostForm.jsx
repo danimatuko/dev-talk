@@ -23,7 +23,6 @@ const CreatePostForm = ({ history }) => {
 		dispatch(addPost(post));
 		// reset after form submit
 		e.target.reset();
-		// return to homepage
 		history.push("/");
 	};
 

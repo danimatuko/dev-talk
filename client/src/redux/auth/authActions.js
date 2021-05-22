@@ -34,6 +34,7 @@ export const getLoggedInUser = (data) => {
 		if (localStorage.token) setAuthToken(token);
 		try {
 			const res = await axios.get("/user/auth");
+			if (!res) throw Error;
 			dispatch({
 				type: authTypes.AUTH_SUCCESS,
 				payload: {

@@ -1,11 +1,11 @@
 import React from "react";
-import CreatePostForm from "../../form/createPostForm/CreatePostForm";
+import CreatePostForm from "../../posts/createPostForm/CreatePostForm";
 
-const NewPost = () => {
+const NewPost = ({ history }) => {
 	return (
 		<div className="container" style={{ width: "50%" }}>
 			<h1 className="text-center">Add New Post</h1>
-			<CreatePostForm />
+			<CreatePostForm history={history} />
 		</div>
 	);
 };

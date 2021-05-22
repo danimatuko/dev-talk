@@ -25,8 +25,7 @@ const register = (req, res) => {
 				};
 
 				const token = jwt.sign(payload, "jwtSecret");
-				// set token in header
-				res.header("x-auth-token", token).json(token);
+				res.json(token);
 			}
 		}
 	);
@@ -54,7 +53,7 @@ const login = (req, res) => {
 				user_id: result[0].user_id
 			};
 			const token = jwt.sign(payload, "jwtSecret");
-			res.json({ token: token, user: result[0] });
+			res.header("x-auth-token", token).json({ token: token, user: result[0] });
 		}
 	});
 };

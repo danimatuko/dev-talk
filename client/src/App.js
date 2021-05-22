@@ -10,12 +10,12 @@ import { useEffect, useState } from "react";
 import Dashboard from "./componenets/pages/dashboard/Dashboard";
 
 const App = () => {
-	const dispatch = useDispatch();
-	const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+	// const dispatch = useDispatch();
+	// const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
-	useEffect(() => {
-		dispatch(getLoggedInUser());
-	}, []);
+	// useEffect(() => {
+	// 	dispatch(getLoggedInUser());
+	// }, []);
 
 	return (
 		<div className="App">

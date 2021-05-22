@@ -20,3 +20,7 @@ export const getUsersPosts = (post) => {
 		}
 	};
 };
+
+export const setLoadingUsersPosts = () => {
+	return { type: profileTypes.setLoadingUsersPosts };
+};

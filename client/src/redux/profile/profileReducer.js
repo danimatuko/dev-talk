@@ -1,7 +1,8 @@
 import profileTypes from "./profileTypes";
 
 const initialState = {
-	usersPosts: []
+	usersPosts: [],
+	isLoading: false
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -9,12 +10,20 @@ const profileReducer = (state = initialState, action) => {
 		case profileTypes.GET_USERS_POSTS_SUCCESS:
 			return {
 				...state,
-				usersPosts: action.payload
+				usersPosts: action.payload,
+				isLoading: false
 			};
 		case profileTypes.GET_USERS_POSTS_FAIL:
 			return {
 				...state,
-				usersPosts: []
+				usersPosts: [],
+				isLoading: false
+			};
+
+		case profileTypes.SET_LOADING_USERS_POSTS:
+			return {
+				...state,
+				isLoading: true
 			};
 
 		default:
