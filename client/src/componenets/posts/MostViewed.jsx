@@ -12,7 +12,7 @@ const MostViewed = ({ post_id, post }) => {
 				<p className="card-text">
 					<small className="text-muted">Last updated at: {date}</small>
 				</p>
-				<a href="#" className="btn btn-primary">
+				<a href="#" className="btn btn-dark">
 					Read More
 				</a>
 			</div>

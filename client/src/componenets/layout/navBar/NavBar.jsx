@@ -12,7 +12,7 @@ const NavBar = () => {
 				<Link className="navbar-brand text-light bg-dark px-3 " to="/">
 					<div className="d-inline">DEV</div>
 					<small className="" style={{ fontSize: "0.7rem" }}>
-						Talk
+						Talks
 					</small>
 				</Link>
 				<button
