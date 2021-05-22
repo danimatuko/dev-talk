@@ -1,4 +1,4 @@
-import authTypes from "../../actions/auth/authTypes";
+import authTypes from "./authTypes";
 
 const initialState = {
 	token: null,

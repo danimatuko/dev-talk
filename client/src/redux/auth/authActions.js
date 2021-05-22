@@ -1,5 +1,5 @@
 import axios from "axios";
-import setAuthToken from "../../../helpers/setAuthToken";
+import setAuthToken from "../../helpers/setAuthToken";
 import authTypes from "./authTypes";
 
 export const login = (data) => {
