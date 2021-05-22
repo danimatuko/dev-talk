@@ -11,7 +11,7 @@ router.get("/", getAllPosts);
 // 	res.json({ newPost: "new" });
 // });
 // ADD POST
-router.post("/", addPost);
+router.post("/",auth, addPost);
 // UPDATE POST
 router.put("/:id", updatePost);
 // DELETE POST

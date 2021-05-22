@@ -19,8 +19,12 @@ const addPost = async (req, res) => {
 	const post = req.body;
 	// add current date
 	post.date = getCurrentDate();
+	// add the author
+	const { first_name, last_name } = req.user;
+	author = first_name + " " + last_name;
+	post.author = author;
 
-	 db.query(sql, post, (err, result) => {
+	db.query(sql, post, (err, result) => {
 		if (err) {
 			res.json(err);
 		} else {
