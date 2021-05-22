@@ -3,8 +3,11 @@ import newPostSchema from "./newPostSchema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addPost } from "../../../redux/post/postActions";
 
-const CreatePostForm = () => {
+const CreatePostForm = ({ history }) => {
+	const dispatch = useDispatch();
 	// react-hook-form -> useForm hook
 	const {
 		register,
@@ -14,21 +17,15 @@ const CreatePostForm = () => {
 		resolver: yupResolver(newPostSchema)
 	});
 
-	// add post to DB
-	const addPost = async (post) => {
-		try {
-			await axios.post("/posts", post);
-		} catch (error) {
-			console.log(console.error());
-		}
-	};
-	
 	// handle submit
 	const onFormSubmit = (post, e) => {
 		post.author = "DANI MATUKO";
-		addPost(post);
+		// add post to DB
+		dispatch(addPost(post));
 		// reset after form submit
 		e.target.reset();
+		// return to homepage
+		history.push("/");
 	};
 
 	return (

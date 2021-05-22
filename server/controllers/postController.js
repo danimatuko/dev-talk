@@ -36,7 +36,7 @@ const addPost = async (req, res) => {
 			if (err) {
 				res.json(err);
 			} else {
-				res.json({ msg: "post added successfully", post: post });
+				res.json({ msg: "post added successfully", post: post, user: req.user });
 			}
 		}
 	);

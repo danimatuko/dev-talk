@@ -5,7 +5,7 @@ import NewPost from "./componenets/pages/newPost/NewPost";
 import NavBar from "./componenets/layout/navBar/NavBar";
 import LoginForm from "./componenets/pages/login/LoginForm";
 import { useDispatch, useSelector } from "react-redux";
-import { getLoggedInUser } from "./redux/actions/auth/authActions";
+import { getLoggedInUser } from "./redux/auth/authActions";
 import { useEffect, useState } from "react";
 import Dashboard from "./componenets/pages/dashboard/Dashboard";
 

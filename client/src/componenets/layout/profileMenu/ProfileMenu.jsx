@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { getLoggedInUser, logout } from "../../../redux/actions/auth/authActions";
+import { getLoggedInUser, logout } from "../../../redux/auth/authActions";
 
 const ProfileMenu = () => {
 	useEffect(() => {

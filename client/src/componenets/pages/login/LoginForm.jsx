@@ -3,7 +3,7 @@ import loginSchema from "./loginSchema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch } from "react-redux";
-import { getLoggedInUser, login, setLoadingUser } from "../../../redux/actions/auth/authActions";
+import { getLoggedInUser, login, setLoadingUser } from "../../../redux/auth/authActions";
 const LoginForm = ({ history }) => {
 	const dispatch = useDispatch((state) => state.authState);
 
