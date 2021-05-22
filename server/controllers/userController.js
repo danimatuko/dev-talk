@@ -1,27 +1,35 @@
 const { db } = require("../db");
 const jwt = require("jsonwebtoken");
+const { v4: uuidv4 } = require("uuid");
 
 // REGISTER
 const register = (req, res) => {
-	const sql = "INSERT INTO users VALUES (?,?,?,?)";
+	const sql = "INSERT INTO users VALUES (?,?,?,?,?)";
 	const user = req.body;
+	// create and add user id
+	user.user_id = uuidv4();
 
-	db.query(sql, [user.first_name, user.last_name, user.email, user.password], (err, result) => {
-		if (err) {
-			res.json(err);
-		} else {
-			// create JWT
-			payload = {
-				first_name: user.first_name,
-				last_name: user.last_name,
-				email: user.email
-			};
+	db.query(
+		sql,
+		[user.user_id, user.first_name, user.last_name, user.email, user.password],
+		(err, result) => {
+			if (err) {
+				res.json(err);
+			} else {
+				// create JWT
+				payload = {
+					first_name: user.first_name,
+					last_name: user.last_name,
+					email: user.email,
+					id: user.id
+				};
 
-			const token = jwt.sign(payload, "jwtSecret");
-			// set token in header
-			res.header("x-auth-token", token).json(token);
+				const token = jwt.sign(payload, "jwtSecret");
+				// set token in header
+				res.header("x-auth-token", token).json(token);
+			}
 		}
-	});
+	);
 };
 
 // LOGIN
