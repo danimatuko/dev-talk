@@ -9,8 +9,11 @@ const NavBar = () => {
 	return (
 		<nav className="navbar navbar-expand-lg mb-5" style={{ backgroundColor: "#eee" }}>
 			<div className="container">
-				<Link className="navbar-brand text-dark" to="/">
-					Nature-Story
+				<Link className="navbar-brand text-light bg-dark px-3 " to="/">
+					<div className="d-inline">DEV</div>
+					<small className="" style={{ fontSize: "0.7rem" }}>
+						Talk
+					</small>
 				</Link>
 				<button
 					className="navbar-toggler"
