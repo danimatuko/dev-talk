@@ -26,7 +26,6 @@ export const login = (data) => {
 };
 
 export const getLoggedInUser = () => {
-	console.log("getLoggedInUser");
 	/* To dispatch an aysnc action we use `redux-thunk` middleware, 
 	which allows to return a function instead of an action object.
 	The function gets the `dispatch` as an argument. */

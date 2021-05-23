@@ -1,5 +1,5 @@
 import React from "react";
-import MostViewedList from "../../componenets/posts/MostViewedList";
+import MostViewedList from "../../posts/MostViewedList";
 
 const HomePage = () => {
 	return (
