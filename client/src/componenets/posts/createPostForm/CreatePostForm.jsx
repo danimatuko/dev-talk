@@ -48,7 +48,8 @@ const CreatePostForm = ({ history }) => {
 		editMode ? dispatch(editPost(post)) : dispatch(addPost(post));
 		// reset after form submit
 		e.target.reset();
-		history.push("/");
+		// if it's a new post redirect to dashboard
+		!editMode && history.push("/profile/dashboard");
 	};
 
 	return (

@@ -21,6 +21,6 @@ router.post("/", auth, addPost);
 router.put("/:post_id", auth, updatePost);
 
 // DELETE POST
-router.delete("/:id", deletePost);
+router.delete("/:id", auth, deletePost);
 
 module.exports = router;

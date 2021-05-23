@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setEditMode } from "../../../redux/post/postActions";
+import { deletePost, setEditMode } from "../../../redux/post/postActions";
 
 const PostRow = ({ index, post: { post_id, title, date } }) => {
 	const dispatch = useDispatch();
@@ -18,7 +18,11 @@ const PostRow = ({ index, post: { post_id, title, date } }) => {
 					onClick={() => dispatch(setEditMode({ editMode: true }))}>
 					Edit
 				</Link>
-				<button className="btn btn-danger btn-sm mx-1">Delete</button>
+				<button
+					className="btn btn-danger btn-sm mx-1"
+					onClick={() => dispatch(deletePost(post_id))}>
+					Delete
+				</button>
 			</td>
 		</tr>
 	);

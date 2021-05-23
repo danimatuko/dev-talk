@@ -30,6 +30,7 @@ export const getLoggedInUser = (data) => {
 	which allows to return a function instead of an action object.
 	The function gets the `dispatch` as an argument. */
 	return async (dispatch) => {
+		console.log("get logged in user")
 		const token = localStorage.token;
 		if (localStorage.token) setAuthToken(token);
 		try {

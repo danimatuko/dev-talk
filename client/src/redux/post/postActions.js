@@ -46,6 +46,25 @@ export const setEditMode = (state) => {
 		payload: state.editMode
 	};
 };
+
+export const deletePost = (id) => {
+	/* To dispatch an aysnc action we use `redux-thunk` middleware, 
+	which allows to return a function instead of an action object.
+	The function gets the `dispatch` as an argument. */
+	return async (dispatch) => {
+		try {
+			const res = await axios.delete(`/posts/${id}`);
+			dispatch({
+				type: postTypes.DELETE_POST_SUCCESS
+			});
+		} catch (error) {
+			dispatch({
+				type: postTypes.DELETE_POST_FAIL
+			});
+		}
+	};
+};
+
 // export const setLoadingUser = () => {
 // 	return { type: authTypes.SET_LOADING_USER };
 // };

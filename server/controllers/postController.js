@@ -72,7 +72,7 @@ const updatePost = (req, res) => {
 
 // DELETE POST
 const deletePost = (req, res) => {
-	const sql = `DELETE FROM posts WHERE post_id = ${req.params.id}`;
+	const sql = `DELETE FROM posts WHERE post_id = '${req.params.id}'`;
 	db.query(sql, (err, result) => {
 		if (err) {
 			res.json(err);
