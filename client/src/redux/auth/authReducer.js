@@ -1,7 +1,6 @@
 import authTypes from "./authTypes";
 
 const initialState = {
-	token: null,
 	isLoggedIn: false,
 	userInfo: null,
 	isLoading: false
@@ -10,18 +9,19 @@ const initialState = {
 const authReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case authTypes.LOGIN_SUCCESS:
-			localStorage.setItem("token", action.payload.token);
+		case authTypes.REGISTER_SUCCESS:
 			return {
 				...state,
-				token: action.payload.token,
 				isLoggedIn: true,
 				isLoading: false,
 				userInfo: action.payload.userInfo
 			};
-		case (authTypes.LOGIN_FAIL, authTypes.LOGOUT, authTypes.REGISTER_FAIL, authTypes.AUTH_FAIL):
+		case authTypes.LOGIN_FAIL:
+		case authTypes.LOGOUT_SUCCESS:
+		case authTypes.REGISTER_FAIL:
+		case authTypes.AUTH_FAIL:
 			return {
 				...state,
-				token: null,
 				isLoggedIn: false,
 				isLoading: false,
 				userInfo: null
@@ -35,11 +35,18 @@ const authReducer = (state = initialState, action) => {
 		case authTypes.AUTH_SUCCESS:
 			return {
 				...state,
-				isLoggedIn: action.payload.isLoggedIn,
-				isLoading: action.payload.isLoading,
+				isLoggedIn: true,
+				isLoading: false,
 				userInfo: action.payload.userInfo
 			};
 
+		case authTypes.LOGOUT:
+			return {
+				...state,
+				isLoggedIn: false,
+				isLoading: false,
+				userInfo: null
+			};
 		default:
 			return state;
 	}

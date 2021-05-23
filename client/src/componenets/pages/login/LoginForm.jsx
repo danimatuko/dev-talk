@@ -62,7 +62,7 @@ const LoginForm = ({ history }) => {
 								/>
 								<p className="text-danger ">{errors.password?.message}</p>
 							</div>
-							<button type="submit" className="btn btn-success d-block m-auto">
+							<button type="submit" className="btn btn-dark d-block m-auto">
 								Login
 							</button>
 						</form>

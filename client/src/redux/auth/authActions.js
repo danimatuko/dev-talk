@@ -9,10 +9,11 @@ export const signUp = (data) => {
 	return async (dispatch) => {
 		try {
 			const res = await axios.post("user/register", data);
+			localStorage.setItem("token", res.data.token);
+
 			dispatch({
 				type: authTypes.REGISTER_SUCCESS,
 				payload: {
-					token: res.data.token,
 					userInfo: res.data.user
 				}
 			});
@@ -33,10 +34,10 @@ export const login = (data) => {
 	return async (dispatch) => {
 		try {
 			const res = await axios.post("user/login", data);
+			localStorage.setItem("token", res.data.token);
 			dispatch({
 				type: authTypes.LOGIN_SUCCESS,
 				payload: {
-					token: res.data.token,
 					userInfo: res.data.user
 				}
 			});
@@ -62,9 +63,7 @@ export const getLoggedInUser = () => {
 			dispatch({
 				type: authTypes.AUTH_SUCCESS,
 				payload: {
-					userInfo: res.data,
-					isLoggedIn: true,
-					isLoading: false
+					userInfo: res.data
 				}
 			});
 		} catch (error) {
