@@ -10,7 +10,6 @@ const initialState = {
 const authReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case authTypes.LOGIN_SUCCESS:
-			console.log("rs", action.payload.token);
 			localStorage.setItem("token", action.payload.token);
 			return {
 				...state,

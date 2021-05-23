@@ -78,7 +78,6 @@ export const getLoggedInUser = () => {
 
 export const logout = () => {
 	localStorage.removeItem("token");
-
 	return {
 		type: authTypes.LOGOUT
 	};

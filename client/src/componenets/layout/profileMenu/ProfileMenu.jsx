@@ -4,17 +4,19 @@ import { Link, useHistory } from "react-router-dom";
 import { getLoggedInUser, logout } from "../../../redux/auth/authActions";
 import { setEditMode } from "../../../redux/post/postActions";
 
-const ProfileMenu = ({ history }) => {
+const ProfileMenu = () => {
 	useEffect(() => {
 		dispatch(getLoggedInUser());
 	}, []);
+
+	const history = useHistory();
 
 	const { userInfo } = useSelector((state) => state.auth);
 	const dispatch = useDispatch();
 
 	const handleLogout = () => {
 		dispatch(logout());
-		history.push("/");
+		history.push("/home");
 	};
 
 	return (
@@ -37,9 +39,9 @@ const ProfileMenu = ({ history }) => {
 				</li>
 
 				<li>
-					<Link className="dropdown-item" to="/logout" onClick={() => handleLogout()}>
+					<button className="dropdown-item" onClick={() => handleLogout()}>
 						Logout
-					</Link>
+					</button>
 				</li>
 				<li>
 					<Link
