@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import Dashboard from "./componenets/pages/dashboard/Dashboard";
 import HomePage from "./componenets/pages/homepage/HomePage";
 import RegisterForm from "./componenets/pages/register/RegisterForm";
+import Toast from "./componenets/layout/toast/Toast";
 
 const App = () => {
 	const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const App = () => {
 	return (
 		<div className="App">
 			<NavBar />
+			<Toast />
 			<Switch>
 				<Route path="/about"></Route>
 				<Route path="/register" component={RegisterForm} />
