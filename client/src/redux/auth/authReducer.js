@@ -10,6 +10,7 @@ const initialState = {
 const authReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case authTypes.LOGIN_SUCCESS:
+			console.log("rs", action.payload.token);
 			localStorage.setItem("token", action.payload.token);
 			return {
 				...state,
@@ -18,7 +19,7 @@ const authReducer = (state = initialState, action) => {
 				isLoading: false,
 				userInfo: action.payload.userInfo
 			};
-		case (authTypes.LOGIN_FAIL, authTypes.LOGOUT):
+		case (authTypes.LOGIN_FAIL, authTypes.LOGOUT, authTypes.REGISTER_FAIL, authTypes.AUTH_FAIL):
 			return {
 				...state,
 				token: null,
@@ -38,13 +39,6 @@ const authReducer = (state = initialState, action) => {
 				isLoggedIn: action.payload.isLoggedIn,
 				isLoading: action.payload.isLoading,
 				userInfo: action.payload.userInfo
-			};
-		case authTypes.AUTH_FAIL:
-			return {
-				...state,
-				isLoggedIn: action.payload.isLoggedIn,
-				isLoading: action.payload.isLoading,
-				userInfo: null
 			};
 
 		default:

@@ -2,6 +2,30 @@ import axios from "axios";
 import setAuthToken from "../../helpers/setAuthToken";
 import authTypes from "./authTypes";
 
+export const signUp = (data) => {
+	/* To dispatch an aysnc action we use `redux-thunk` middleware, 
+	which allows to return a function instead of an action object.
+	The function gets the `dispatch` as an argument. */
+	return async (dispatch) => {
+		try {
+			const res = await axios.post("user/register", data);
+			dispatch({
+				type: authTypes.REGISTER_SUCCESS,
+				payload: {
+					token: res.data.token,
+					userInfo: res.data.user
+				}
+			});
+		} catch (error) {
+			if (localStorage.token) localStorage.removeItem("token");
+			dispatch({
+				type: authTypes.REGISTER_FAIL
+			});
+			console.log("Server Error \n" + error);
+		}
+	};
+};
+
 export const login = (data) => {
 	/* To dispatch an aysnc action we use `redux-thunk` middleware, 
 	which allows to return a function instead of an action object.
@@ -44,13 +68,9 @@ export const getLoggedInUser = () => {
 				}
 			});
 		} catch (error) {
+			if (localStorage.token) localStorage.removeItem("token");
 			dispatch({
-				type: authTypes.AUTH_FAIL,
-				payload: {
-					userInfo: null,
-					isLoggedIn: false,
-					isLoading: false
-				}
+				type: authTypes.AUTH_FAIL
 			});
 		}
 	};
@@ -58,6 +78,7 @@ export const getLoggedInUser = () => {
 
 export const logout = () => {
 	localStorage.removeItem("token");
+
 	return {
 		type: authTypes.LOGOUT
 	};

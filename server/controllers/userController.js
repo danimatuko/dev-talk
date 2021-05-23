@@ -25,7 +25,7 @@ const register = (req, res) => {
 				};
 
 				const token = jwt.sign(payload, "jwtSecret");
-				res.json(token);
+				res.header("x-auth-token", token).json({ token: token, user: payload });
 			}
 		}
 	);

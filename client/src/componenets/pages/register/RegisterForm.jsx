@@ -2,8 +2,9 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch } from "react-redux";
-import { login, setLoadingUser } from "../../../redux/auth/authActions";
+import { signUp, setLoadingUser } from "../../../redux/auth/authActions";
 import registerSchema from "./registerSchema";
+
 const RegisterForm = ({ history }) => {
 	const dispatch = useDispatch((state) => state.authState);
 
@@ -20,7 +21,7 @@ const RegisterForm = ({ history }) => {
 	const onFormSubmit = (data, e) => {
 		// set loader while fetching data
 		dispatch(setLoadingUser());
-		dispatch(login(data));
+		dispatch(signUp(data));
 		// reset after form submit
 		e.target.reset();
 		history.push("/");
