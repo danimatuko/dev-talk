@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SHOW_NOTIFICATION,HIDE_NOTIFICATION } from "../toast/toastReducer";
+import { SHOW_NOTIFICATION, HIDE_NOTIFICATION } from "../toast/toastReducer";
 import postTypes from "./postTypes";
 
 export const addPost = (post) => {
@@ -43,9 +43,17 @@ export const editPost = (post) => {
 				type: postTypes.EDIT_POST_SUCCESS,
 				payload: res.data.post
 			});
+
+			dispatch({
+				type: SHOW_NOTIFICATION,
+				payload: "Your post edited successfuly!"
+			});
 		} catch (error) {
 			dispatch({
 				type: postTypes.EDIT_POST_FAIL
+			});
+			dispatch({
+				type: HIDE_NOTIFICATION
 			});
 		}
 	};
@@ -68,14 +76,18 @@ export const deletePost = (id) => {
 			dispatch({
 				type: postTypes.DELETE_POST_SUCCESS
 			});
+
+			dispatch({
+				type: SHOW_NOTIFICATION,
+				payload: "Your post deleted successfuly!"
+			});
 		} catch (error) {
 			dispatch({
 				type: postTypes.DELETE_POST_FAIL
 			});
+			dispatch({
+				type: HIDE_NOTIFICATION
+			});
 		}
 	};
 };
-
-// export const setLoadingUser = () => {
-// 	return { type: authTypes.SET_LOADING_USER };
-// };
