@@ -6,20 +6,21 @@ import DashboardTable from "../../dashborad/dashborad-table/DashboardTable";
 
 const Dashboard = () => {
 	const dispatch = useDispatch();
-	const {
-		isLoading,
-		userInfo: { first_name, last_name }
-	} = useSelector((state) => state.auth);
 
 	useEffect(() => {
 		dispatch(getLoggedInUser());
 		dispatch(getUsersPosts());
 	}, []);
 
+	const { userInfo } = useSelector((state) => state.auth);
+	// const { first_name, last_name } = userInfo;
+
 	return (
 		<div className="container">
 			<h1 className="display-1">Dashboard</h1>
-			<h2 className="fs-5">{!isLoading && `Welcome ${first_name} ${last_name}`}</h2>
+			<h2 className="fs-5">
+				{userInfo && `Welcome ${userInfo.first_name} ${userInfo.last_name} `}
+			</h2>
 			<div className="container">
 				<div className="row">
 					<div className="col-9">

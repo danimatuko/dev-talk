@@ -25,12 +25,12 @@ export const login = (data) => {
 	};
 };
 
-export const getLoggedInUser = (data) => {
+export const getLoggedInUser = () => {
+	console.log("getLoggedInUser");
 	/* To dispatch an aysnc action we use `redux-thunk` middleware, 
 	which allows to return a function instead of an action object.
 	The function gets the `dispatch` as an argument. */
 	return async (dispatch) => {
-		console.log("get logged in user")
 		const token = localStorage.token;
 		if (localStorage.token) setAuthToken(token);
 		try {
@@ -49,8 +49,8 @@ export const getLoggedInUser = (data) => {
 				type: authTypes.AUTH_FAIL,
 				payload: {
 					userInfo: null,
-					isLoggedIn: null,
-					isLoading: null
+					isLoggedIn: false,
+					isLoading: false
 				}
 			});
 		}
