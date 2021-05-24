@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import MostViewed from "./MostViewed";
+import MostViewed from "../most-viewed/MostViewed";
 import axios from "axios";
 
 const MostViewedList = () => {
@@ -26,10 +26,14 @@ const MostViewedList = () => {
 	return isLoading === true ? (
 		<div>isLoading...</div>
 	) : (
-		<div>
+		<div className="row row-cols-1">
 			{posts != null &&
 				posts.map((post) => {
-					return <MostViewed key={post.post_id} post={post} />;
+					return (
+						<div className="col">
+							<MostViewed key={post.post_id} post={post} />
+						</div>
+					);
 				})}
 		</div>
 	);

@@ -48,7 +48,7 @@ const CreatePostForm = ({ history }) => {
 	const onFormSubmit = (post, e) => {
 		if (editMode) {
 			dispatch(editPost(post));
-			dispatch(showNotify("Your post deleted succsessfuly!"));
+			dispatch(showNotify("Your post edited succsessfuly!"));
 		} else {
 			dispatch(addPost(post));
 			dispatch(showNotify("Your post Added succsessfuly!"));

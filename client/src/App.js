@@ -32,7 +32,7 @@ const App = () => {
 					path={["/posts/new-post", "/posts/edit-post/:post_id"]}
 					component={NewPost}
 				/>
-				<Route path="/" component={HomePage} />
+				<Route path={["/", "/home"]} component={HomePage} />
 			</Switch>
 		</div>
 	);
