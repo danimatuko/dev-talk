@@ -7,6 +7,7 @@ import { setEditMode } from "../../../redux/post/postActions";
 const ProfileMenu = () => {
 	useEffect(() => {
 		dispatch(getLoggedInUser());
+		// eslint-disable-next-line
 	}, []);
 
 	const history = useHistory();
@@ -20,16 +21,14 @@ const ProfileMenu = () => {
 	};
 
 	return (
-		<div className="nav-item dropdown ">
-			<a
-				className="dropdown-toggle text-dark mx-1"
-				href="#"
-				role="button"
+		<div className="nav-item dropdown">
+			<button
+				className="dropdown-toggle text-dark mx-1 border-0"
 				id="dropdownMenuLink"
 				data-bs-toggle="dropdown"
 				aria-expanded="false">
 				<i className="fas fa-user-circle fa-2x"></i>
-			</a>
+			</button>
 
 			<ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
 				<li>

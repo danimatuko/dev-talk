@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import newPostSchema from "./newPostSchema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addPost, editPost } from "../../../redux/post/postActions";
 import { useParams } from "react-router";
 import axios from "axios";
+import { showNotify } from "../../../redux/toast/toastActions";
 
 const CreatePostForm = ({ history }) => {
 	// Redux hooks
@@ -15,6 +16,7 @@ const CreatePostForm = ({ history }) => {
 	const { post_id } = useParams();
 	useEffect(() => {
 		editMode && getPostById(post_id);
+		// eslint-disable-next-line
 	}, []);
 
 	// react-hook-form -> useForm hook
@@ -44,8 +46,14 @@ const CreatePostForm = ({ history }) => {
 	};
 	// handle submit
 	const onFormSubmit = (post, e) => {
-		// add post to DB
-		editMode ? dispatch(editPost(post)) : dispatch(addPost(post));
+		if (editMode) {
+			dispatch(editPost(post));
+			dispatch(showNotify("Your post deleted succsessfuly!"));
+		} else {
+			dispatch(addPost(post));
+			dispatch(showNotify("Your post Added succsessfuly!"));
+		}
+
 		// reset after form submit
 		e.target.reset();
 		history.push("/profile/dashboard");

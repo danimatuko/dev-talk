@@ -1,9 +1,17 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getUsersPosts } from "../../../redux/profile/profileActions";
 import PostRow from "../post-row/PostRow";
 
 const DashboardTable = () => {
-	const usersPosts = useSelector((state) => state.profile.usersPosts);
+	const { usersPosts } = useSelector((state) => state.profile);
+	const usersPostsModified = useSelector((state) => state.toast.isVisible);
+
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(getUsersPosts());
+	}, [usersPostsModified, dispatch]);
 
 	return (
 		<div className="my-5">

@@ -7,9 +7,8 @@ export const showNotify = (messagge) => {
 	};
 };
 
-export const hideNotify = (messagge) => {
+export const hideNotify = () => {
 	return {
-		type: HIDE_NOTIFICATION,
-		payload: messagge
+		type: HIDE_NOTIFICATION
 	};
 };

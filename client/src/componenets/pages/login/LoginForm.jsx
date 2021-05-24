@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import loginSchema from "./loginSchema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";

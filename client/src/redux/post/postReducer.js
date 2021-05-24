@@ -28,7 +28,7 @@ const postReducer = (state = initialState, action) => {
 				...state,
 				editMode: action.payload
 			};
-		case ( postTypes.EDIT_POST_SUCCESS):
+		case postTypes.EDIT_POST_SUCCESS:
 			return {
 				...state,
 				title: action.payload.title,

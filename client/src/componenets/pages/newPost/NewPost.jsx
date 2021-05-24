@@ -7,7 +7,7 @@ const NewPost = ({ history }) => {
 	const dispatch = useDispatch();
 	useEffect(() => {
 		dispatch(getLoggedInUser());
-	}, []);
+	}, [dispatch]);
 
 	const editMode = useSelector((state) => state.post.editMode);
 	return (

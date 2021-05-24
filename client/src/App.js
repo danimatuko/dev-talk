@@ -3,9 +3,9 @@ import { Switch, Route } from "react-router-dom";
 import NewPost from "./componenets/pages/newPost/NewPost";
 import NavBar from "./componenets/layout/navBar/NavBar";
 import LoginForm from "./componenets/pages/login/LoginForm";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getLoggedInUser } from "./redux/auth/authActions";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Dashboard from "./componenets/pages/dashboard/Dashboard";
 import HomePage from "./componenets/pages/homepage/HomePage";
 import RegisterForm from "./componenets/pages/register/RegisterForm";
@@ -13,10 +13,10 @@ import Toast from "./componenets/layout/toast/Toast";
 
 const App = () => {
 	const dispatch = useDispatch();
-	const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
 	useEffect(() => {
 		dispatch(getLoggedInUser());
+		// eslint-disable-next-line
 	}, []);
 
 	return (

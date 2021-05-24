@@ -1,5 +1,4 @@
 import axios from "axios";
-import { SHOW_NOTIFICATION, HIDE_NOTIFICATION } from "../toast/toastReducer";
 import postTypes from "./postTypes";
 
 export const addPost = (post) => {
@@ -13,20 +12,10 @@ export const addPost = (post) => {
 				type: postTypes.POST_SUCCESS,
 				payload: res.data.post
 			});
-
-			dispatch({
-				type: SHOW_NOTIFICATION,
-				payload: "Your post added successfuly!"
-			});
 		} catch (error) {
 			dispatch({
 				type: postTypes.POST_FAIL
 			});
-
-			dispatch({
-				type: HIDE_NOTIFICATION
-			});
-
 			console.log(error.message);
 		}
 	};
@@ -43,18 +32,11 @@ export const editPost = (post) => {
 				type: postTypes.EDIT_POST_SUCCESS,
 				payload: res.data.post
 			});
-
-			dispatch({
-				type: SHOW_NOTIFICATION,
-				payload: "Your post edited successfuly!"
-			});
 		} catch (error) {
 			dispatch({
 				type: postTypes.EDIT_POST_FAIL
 			});
-			dispatch({
-				type: HIDE_NOTIFICATION
-			});
+			console.log(error.message);
 		}
 	};
 };
@@ -72,22 +54,15 @@ export const deletePost = (id) => {
 	The function gets the `dispatch` as an argument. */
 	return async (dispatch) => {
 		try {
-			const res = await axios.delete(`/posts/${id}`);
+			 await axios.delete(`/posts/${id}`);
 			dispatch({
 				type: postTypes.DELETE_POST_SUCCESS
-			});
-
-			dispatch({
-				type: SHOW_NOTIFICATION,
-				payload: "Your post deleted successfuly!"
 			});
 		} catch (error) {
 			dispatch({
 				type: postTypes.DELETE_POST_FAIL
 			});
-			dispatch({
-				type: HIDE_NOTIFICATION
-			});
+			console.log(error.message);
 		}
 	};
 };
