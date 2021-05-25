@@ -1,4 +1,3 @@
-import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import NewPost from "./componenets/pages/newPost/NewPost";
 import NavBar from "./componenets/layout/navBar/NavBar";
@@ -10,6 +9,8 @@ import Dashboard from "./componenets/pages/dashboard/Dashboard";
 import HomePage from "./componenets/pages/homepage/HomePage";
 import RegisterForm from "./componenets/pages/register/RegisterForm";
 import Toast from "./componenets/layout/toast/Toast";
+import FullPost from "./componenets/posts/fullPost/FullPost";
+import About from "./componenets/about/About";
 
 const App = () => {
 	const dispatch = useDispatch();
@@ -23,17 +24,20 @@ const App = () => {
 		<div className="App">
 			<NavBar />
 			<Toast />
-			<Switch>
-				<Route path="/about"></Route>
-				<Route path="/register" component={RegisterForm} />
-				<Route path="/login" component={LoginForm} />
-				<Route path="/profile/dashboard" component={Dashboard} />
-				<Route
-					path={["/posts/new-post", "/posts/edit-post/:post_id"]}
-					component={NewPost}
-				/>
-				<Route path={["/", "/home"]} component={HomePage} />
-			</Switch>
+			<div className="container">
+				<Switch>
+					<Route path="/about" component={About}/>
+					<Route path="/register" component={RegisterForm} />
+					<Route path="/login" component={LoginForm} />
+					<Route path="/profile/dashboard" component={Dashboard} />
+					<Route
+						path={["/posts/new-post", "/posts/edit-post/:post_id"]}
+						component={NewPost}
+					/>
+					<Route path="/posts/:post_id" component={FullPost} />
+					<Route path={["/", "/home"]} component={HomePage} />
+				</Switch>
+			</div>
 		</div>
 	);
 };

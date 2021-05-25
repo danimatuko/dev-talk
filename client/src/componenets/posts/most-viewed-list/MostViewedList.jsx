@@ -26,11 +26,11 @@ const MostViewedList = () => {
 	return isLoading === true ? (
 		<div>isLoading...</div>
 	) : (
-		<div className="row row-cols-1">
+		<div className="row row-cols-lg-3 row-cols-md-2 align-items-end">
 			{posts != null &&
 				posts.map((post) => {
 					return (
-						<div className="col">
+						<div className="col-12">
 							<MostViewed key={post.post_id} post={post} />
 						</div>
 					);

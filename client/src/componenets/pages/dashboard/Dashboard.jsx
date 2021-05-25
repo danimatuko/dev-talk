@@ -17,7 +17,7 @@ const Dashboard = () => {
 
 	return (
 		<div className="container">
-			<h1 className="display-1">Dashboard</h1>
+			<h1 className="display-1 text-capitalize">Dashboard</h1>
 			<h2 className="fs-5 mb-3">
 				{userInfo && `Welcome ${userInfo.first_name} ${userInfo.last_name} `}
 			</h2>

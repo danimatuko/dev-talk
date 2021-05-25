@@ -1,20 +1,26 @@
 import postTypes from "./postTypes";
 
 const initialState = {
-	tite: "",
+	title: "",
 	body: "",
 	imageUrl: "",
-	editMode: false
+	date: "",
+	editMode: false,
+	author: ""
 };
 
 const postReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case postTypes.POST_SUCCESS:
+		case postTypes.EDIT_POST_SUCCESS:
+		case postTypes.GET_POST_BY_ID_SUCCESS:
 			return {
 				...state,
 				title: action.payload.title,
 				body: action.payload.body,
-				imageUrl: action.payload.imageUrl
+				imageUrl: action.payload.imageUrl,
+				date: action.payload.date,
+				author: action.payload.author
 			};
 		case postTypes.POST_FAIL:
 			return {
@@ -28,16 +34,11 @@ const postReducer = (state = initialState, action) => {
 				...state,
 				editMode: action.payload
 			};
-		case postTypes.EDIT_POST_SUCCESS:
-			return {
-				...state,
-				title: action.payload.title,
-				body: action.payload.body,
-				imageUrl: action.payload.imageUrl
-			};
 
 		case postTypes.EDIT_POST_FAIL:
+		case postTypes.GET_POST_BY_ID_FAIL:
 			return state;
+
 		default:
 			return state;
 	}

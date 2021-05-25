@@ -7,7 +7,7 @@ const NavBar = () => {
 	const { isLoggedIn, isLoading } = useSelector((state) => state.auth);
 
 	return (
-		<nav className="navbar navbar-expand-lg mb-5 fixed-top-0" style={{ backgroundColor: "#eee" }}>
+		<nav className="navbar navbar-expand-lg mb-5 sticky-top" style={{ backgroundColor: "#eee" }}>
 			<div className="container">
 				<Link className="navbar-brand text-light bg-dark px-3 " to="/">
 					<div className="d-inline">DEV</div>

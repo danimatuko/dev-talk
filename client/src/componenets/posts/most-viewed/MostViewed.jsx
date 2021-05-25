@@ -1,28 +1,35 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./mostViewed.css";
+import { useDispatch } from "react-redux";
+import { getPostById } from "../../../redux/post/postActions";
+const MostViewed = ({ post }) => {
+	const { post_id, title, body, author, date, imageUrl } = post;
 
-const MostViewed = ({ post_id, post }) => {
-	const { title, body, author, date, imageUrl } = post;
+	const dispatch = useDispatch();
 	return (
-		<div className="card mb-3">
+		<div className="card mb-5 border-0 rounded-0">
 			{imageUrl && (
 				<img
 					src={imageUrl}
 					alt="..."
 					className=""
-					style={{ maxHeight: "550px", objectFit: "cover" }}
+					style={{ height: "300px", objectFit: "cover" }}
 				/>
 			)}
 			<div className="card-body">
-				<h2 className="card-title h3">{title}</h2>
+				<h2 className="card-title text-capitalize h3">{title}</h2>
 				<p className="text-preview">{body}</p>
-				<span className="text-dark">{author}</span>
+				<span className="text-dark text-capitalize">{author}</span>
 				<p className="card-text">
 					<small className="text-muted">Last updated at: {date}</small>
 				</p>
-				<a href="/" className="btn btn-dark">
+				<Link
+					to={`/posts/${post_id}`}
+					className="btn btn-dark"
+					onClick={() => dispatch(getPostById(post_id))}>
 					Read More
-				</a>
+				</Link>
 			</div>
 		</div>
 	);

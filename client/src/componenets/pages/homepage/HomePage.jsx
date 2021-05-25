@@ -5,9 +5,9 @@ const HomePage = () => {
 	return (
 		<div>
 			<div className="container">
-				<h1 className="text-center mb-5">Most Viewed</h1>
+				<h1 className="mb-5 display-1">Most Viewed</h1>
 				<div className="row justify-content-center">
-					<div className="col-6">
+					<div className="col">
 						<MostViewedList />
 					</div>
 				</div>

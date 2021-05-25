@@ -54,7 +54,7 @@ export const deletePost = (id) => {
 	The function gets the `dispatch` as an argument. */
 	return async (dispatch) => {
 		try {
-			 await axios.delete(`/posts/${id}`);
+			await axios.delete(`/posts/${id}`);
 			dispatch({
 				type: postTypes.DELETE_POST_SUCCESS
 			});
@@ -64,5 +64,24 @@ export const deletePost = (id) => {
 			});
 			console.log(error.message);
 		}
+	};
+};
+
+export const getPostById = (post_id) => {
+	return (dispatch) => {
+		axios
+			.get(`/posts/${post_id}`)
+			.then((res) =>
+				dispatch({
+					type: postTypes.GET_POST_BY_ID_SUCCESS,
+					payload: res.data
+				})
+			)
+			.catch((err) => {
+				console.log(err.message);
+				dispatch({
+					type: postTypes.GET_POST_BY_ID_FAIL
+				});
+			});
 	};
 };

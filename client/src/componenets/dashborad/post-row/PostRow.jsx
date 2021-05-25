@@ -15,7 +15,7 @@ const PostRow = ({ index, post: { post_id, title, date } }) => {
 	return (
 		<tr>
 			<th scope="row">{index + 1}</th>
-			<td>{title}</td>
+			<td className="text-capitalize">{title}</td>
 			<td>{date}</td>
 			<td>True</td>
 			<td>
