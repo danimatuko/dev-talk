@@ -11,6 +11,7 @@ import RegisterForm from "./componenets/pages/register/RegisterForm";
 import Toast from "./componenets/layout/toast/Toast";
 import FullPost from "./componenets/posts/fullPost/FullPost";
 import About from "./componenets/about/About";
+import Footer from "./componenets/footer/Footer";
 
 const App = () => {
 	const dispatch = useDispatch();
@@ -23,10 +24,10 @@ const App = () => {
 	return (
 		<div className="App">
 			<NavBar />
+			<div className="min-vh-100">
 			<Toast />
-			<div className="container">
 				<Switch>
-					<Route path="/about" component={About}/>
+					<Route path="/about" component={About} />
 					<Route path="/register" component={RegisterForm} />
 					<Route path="/login" component={LoginForm} />
 					<Route path="/profile/dashboard" component={Dashboard} />
@@ -38,6 +39,7 @@ const App = () => {
 					<Route path={["/", "/home"]} component={HomePage} />
 				</Switch>
 			</div>
+			<Footer />
 		</div>
 	);
 };
