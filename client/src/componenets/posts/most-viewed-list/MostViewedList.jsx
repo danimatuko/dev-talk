@@ -26,7 +26,7 @@ const MostViewedList = () => {
 	return isLoading === true ? (
 		<div>isLoading...</div>
 	) : (
-		<div className="row row-cols-lg-3 row-cols-md-2 align-items-end my-5">
+		<div className="row row-cols-lg-3 row-cols-md-2 align-items-end">
 			{posts != null &&
 				posts.map((post) => {
 					return (

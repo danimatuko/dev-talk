@@ -1,7 +1,7 @@
 import authTypes from "./authTypes";
 
 const initialState = {
-	isLoggedIn: false,
+	isAuth: false,
 	userInfo: null,
 	isLoading: false
 };
@@ -12,7 +12,7 @@ const authReducer = (state = initialState, action) => {
 		case authTypes.REGISTER_SUCCESS:
 			return {
 				...state,
-				isLoggedIn: true,
+				isAuth: true,
 				isLoading: false,
 				userInfo: action.payload.userInfo
 			};
@@ -22,7 +22,7 @@ const authReducer = (state = initialState, action) => {
 		case authTypes.AUTH_FAIL:
 			return {
 				...state,
-				isLoggedIn: false,
+				isAuth: false,
 				isLoading: false,
 				userInfo: null
 			};
@@ -35,7 +35,7 @@ const authReducer = (state = initialState, action) => {
 		case authTypes.AUTH_SUCCESS:
 			return {
 				...state,
-				isLoggedIn: true,
+				isAuth: true,
 				isLoading: false,
 				userInfo: action.payload.userInfo
 			};
@@ -43,7 +43,7 @@ const authReducer = (state = initialState, action) => {
 		case authTypes.LOGOUT:
 			return {
 				...state,
-				isLoggedIn: false,
+				isAuth: false,
 				isLoading: false,
 				userInfo: null
 			};

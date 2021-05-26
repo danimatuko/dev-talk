@@ -5,7 +5,7 @@ const HomePage = () => {
 	return (
 		<div>
 			<div className="container">
-				<h1 className="mb-5 display-1 bg-light py-5 ps-3">Most Viewed</h1>
+				<h1 className="mb-5 display-1">Most Viewed</h1>
 				<div className="row justify-content-center">
 					<div className="col">
 						<MostViewedList />

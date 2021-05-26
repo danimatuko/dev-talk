@@ -14,10 +14,10 @@ const MostViewed = ({ post }) => {
 					src={imageUrl}
 					alt="..."
 					className=""
-					style={{ height: "300px", objectFit: "fill" }}
+					style={{ height: "300px", objectFit: "cover" }}
 				/>
 			)}
-			<div className="card-body" style={{ height: "280px" }}>
+			<div className="card-body">
 				<h2 className="card-title text-capitalize h3">{title}</h2>
 				<p className="text-preview">{body}</p>
 				<span className="text-dark text-capitalize">{author}</span>

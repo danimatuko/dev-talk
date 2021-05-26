@@ -2,7 +2,7 @@ import { Switch, Route } from "react-router-dom";
 import NewPost from "./componenets/pages/newPost/NewPost";
 import NavBar from "./componenets/layout/navBar/NavBar";
 import LoginForm from "./componenets/pages/login/LoginForm";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getLoggedInUser } from "./redux/auth/authActions";
 import { useEffect } from "react";
 import Dashboard from "./componenets/pages/dashboard/Dashboard";
@@ -12,10 +12,11 @@ import Toast from "./componenets/layout/toast/Toast";
 import FullPost from "./componenets/posts/fullPost/FullPost";
 import About from "./componenets/about/About";
 import Footer from "./componenets/footer/Footer";
+import ProtectedRoute from "./componenets/protectedRoute/ProtectedRoute";
 
 const App = () => {
 	const dispatch = useDispatch();
-
+	const isAuth = useSelector((state) => state.auth.isAuth);
 	useEffect(() => {
 		dispatch(getLoggedInUser());
 		// eslint-disable-next-line
@@ -25,12 +26,16 @@ const App = () => {
 		<div className="App">
 			<NavBar />
 			<div className="min-vh-100">
-			<Toast />
+				<Toast />
 				<Switch>
 					<Route path="/about" component={About} />
 					<Route path="/register" component={RegisterForm} />
 					<Route path="/login" component={LoginForm} />
-					<Route path="/profile/dashboard" component={Dashboard} />
+					<ProtectedRoute
+						isAuth={isAuth}
+						path="/profile/dashboard"
+						component={Dashboard}
+					/>
 					<Route
 						path={["/posts/new-post", "/posts/edit-post/:post_id"]}
 						component={NewPost}
