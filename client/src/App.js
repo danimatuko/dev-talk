@@ -12,7 +12,7 @@ import Toast from "./componenets/layout/toast/Toast";
 import FullPost from "./componenets/posts/fullPost/FullPost";
 import About from "./componenets/about/About";
 import Footer from "./componenets/footer/Footer";
-import ProtectedRoute from "./componenets/protected-route/ProtectedRoute";
+import ProtectedRoute from "./componenets/layout/protected-route/ProtectedRoute";
 import ForbiddenPage from "./componenets/pages/error-page/ForbiddenPage";
 import PageNotFound from "./componenets/pages/error-page/PageNotFound";
 

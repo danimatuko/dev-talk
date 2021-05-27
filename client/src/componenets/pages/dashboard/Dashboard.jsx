@@ -14,14 +14,15 @@ const Dashboard = () => {
 		dispatch(getUsersPosts());
 	}, [dispatch]);
 
-
 	return (
 		<div className="container">
-			<h1 className="display-1 text-capitalize">Dashboard</h1>
-			<h2 className="fs-5 mb-3">
-				{userInfo && `Welcome ${userInfo.first_name} ${userInfo.last_name} `}
-			</h2>
-			<hr />
+			<div className="d-inline-block">
+				<h1 className="display-1 text-capitalize">Dashboard</h1>
+				<h2 className="fs-5">
+					{userInfo && `Welcome ${userInfo.first_name} ${userInfo.last_name} `}
+				</h2>
+				<hr className="mt-0"/>
+			</div>
 			<div className="container">
 				<div className="row">
 					<div className="col-12">
