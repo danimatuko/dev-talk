@@ -12,7 +12,9 @@ import Toast from "./componenets/layout/toast/Toast";
 import FullPost from "./componenets/posts/fullPost/FullPost";
 import About from "./componenets/about/About";
 import Footer from "./componenets/footer/Footer";
-import ProtectedRoute from "./componenets/protectedRoute/ProtectedRoute";
+import ProtectedRoute from "./componenets/protected-route/ProtectedRoute";
+import ForbiddenPage from "./componenets/pages/error-page/ForbiddenPage";
+import PageNotFound from "./componenets/pages/error-page/PageNotFound";
 
 const App = () => {
 	const dispatch = useDispatch();
@@ -25,23 +27,34 @@ const App = () => {
 	return (
 		<div className="App">
 			<NavBar />
-			<div className="min-vh-100">
-				<Toast />
+			<Toast />
+			<div style={{ minHeight: "65vh" }}>
 				<Switch>
-					<Route path="/about" component={About} />
-					<Route path="/register" component={RegisterForm} />
-					<Route path="/login" component={LoginForm} />
+					<Route exact path={["/", "/home"]} component={HomePage} />
+					<Route exact path="/about" component={About} />
+					<Route exact path="/register" component={RegisterForm} />
+					<Route exact path="/login" component={LoginForm} />
 					<ProtectedRoute
-						isAuth={isAuth}
+						exact
 						path="/profile/dashboard"
+						isAuth={isAuth}
 						component={Dashboard}
 					/>
-					<Route
-						path={["/posts/new-post", "/posts/edit-post/:post_id"]}
+					<ProtectedRoute
+						exact
+						path={"/posts/new-post"}
+						isAuth={isAuth}
 						component={NewPost}
 					/>
-					<Route path="/posts/:post_id" component={FullPost} />
-					<Route path={["/", "/home"]} component={HomePage} />
+					<ProtectedRoute
+						exact
+						path={["/posts/new-post", "/posts/edit-post/:post_id"]}
+						isAuth={isAuth}
+						component={NewPost}
+					/>
+					<Route exact path="/posts/:post_id" component={FullPost} />
+					<Route path="/forbbiden" component={ForbiddenPage} />
+					<Route path="*" component={PageNotFound} />
 				</Switch>
 			</div>
 			<Footer />

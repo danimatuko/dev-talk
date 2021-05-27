@@ -21,7 +21,7 @@ const PostRow = ({ index, post: { post_id, title, date } }) => {
 			<td>
 				<Link
 					to={`/posts/edit-post/${post_id}`}
-					className="btn btn-success btn-sm mx-1"
+					className="btn btn-secondary btn-sm mx-1"
 					onClick={() => dispatch(setEditMode({ editMode: true }))}>
 					Edit
 				</Link>
