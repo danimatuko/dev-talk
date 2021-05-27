@@ -1,4 +1,4 @@
-const { db } = require("../db");
+const { db } = require("../database/db");
 const getCurrentDate = require("../helpers/getCurrentDate");
 const { v4: uuidv4 } = require("uuid");
 

@@ -18,7 +18,7 @@ const Dashboard = () => {
 		<div className="container">
 			<div className="d-inline-block">
 				<h1 className="display-1 text-capitalize">Dashboard</h1>
-				<h2 className="fs-5">
+				<h2 className="fs-5 text-capitalize">
 					{userInfo && `Welcome ${userInfo.first_name} ${userInfo.last_name} `}
 				</h2>
 				<hr className="mt-0"/>

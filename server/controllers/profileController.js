@@ -1,4 +1,4 @@
-const { db } = require("../db");
+const { db } = require("../database/db");
 
 const getUsersPosts = (req, res) => {
 	if (!req.user.user_id || req.user.user_id === null) return res.send("Invalid user id");
