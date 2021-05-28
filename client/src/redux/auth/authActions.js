@@ -8,7 +8,9 @@ export const signUp = (data) => {
 	The function gets the `dispatch` as an argument. */
 	return async (dispatch) => {
 		try {
-			const res = await axios.post("user/register", data);
+			const res = await axios.post("auth/register", data);
+			if (res.data.token) throw new Error("User alerady exist");
+
 			localStorage.setItem("token", res.data.token);
 
 			dispatch({
@@ -33,7 +35,7 @@ export const login = (data) => {
 	The function gets the `dispatch` as an argument. */
 	return async (dispatch) => {
 		try {
-			const res = await axios.post("user/login", data);
+			const res = await axios.post("auth/login", data);
 			localStorage.setItem("token", res.data.token);
 			dispatch({
 				type: authTypes.LOGIN_SUCCESS,
@@ -58,7 +60,7 @@ export const getLoggedInUser = () => {
 		const token = localStorage.token;
 		if (localStorage.token) setAuthToken(token);
 		try {
-			const res = await axios.get("/user/auth");
+			const res = await axios.get("/auth");
 			if (!res) throw Error;
 			dispatch({
 				type: authTypes.AUTH_SUCCESS,
@@ -85,3 +87,8 @@ export const logout = () => {
 export const setLoadingUser = () => {
 	return { type: authTypes.SET_LOADING_USER };
 };
+
+
+export const getUserByEmail = ()=>{
+	
+}
