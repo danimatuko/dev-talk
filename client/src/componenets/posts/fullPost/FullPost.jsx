@@ -17,10 +17,10 @@ const FullPost = ({ match }) => {
 
 	return (
 		<div className="container">
-			<div className="bg-white py-5 px-0">
+			<div className="bg-white py-5 px-0 w-75 mx-auto">
 				<div className="row justify-content-center">
-					<div className="col-lg-8">
-						<h1 className="text-capitalize display-1 mb-5">{title}</h1>
+					<div className="col-lg-10">
+						<h1 className="text-capitalize display-4 mb-4">{title}</h1>
 
 						<div className="author mb- text-capitalize">{author}</div>
 						<small className="">{date} </small>
@@ -31,7 +31,7 @@ const FullPost = ({ match }) => {
 								style={{ width: "100%", maxHeight: "500px", objectFit: "cover" }}
 							/>
 						</div>
-						<div className="my-3">{body}</div>
+						<div className="my-4 fs-5 fw-light">{body}</div>
 					</div>
 				</div>
 			</div>

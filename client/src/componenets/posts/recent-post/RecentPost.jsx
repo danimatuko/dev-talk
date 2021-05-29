@@ -17,9 +17,11 @@ const RecentPost = ({ post }) => {
 					style={{ height: "300px", objectFit: "cover" }}
 				/>
 			)}
-			<div className="card-body">
-				<h2 className="card-title text-capitalize h3">{title}</h2>
+			<div className="card-body " style={{ height: "150px" }}>
+				<h2 className="card-title text-capitalize text-preview h3">{title}</h2>
 				<p className="text-preview">{body}</p>
+			</div>
+			<div className="p-3">
 				<span className="text-dark text-capitalize">{author}</span>
 				<p className="card-text">
 					<small className="text-muted">Last updated at: {date}</small>
