@@ -56,14 +56,16 @@ const login = (req, res) => {
 
 	const sql = `SELECT *
     FROM users 
-    WHERE email='${email}' 
-    AND password='${password}'`;
+    WHERE email='${email}'`;
 
-	db.query(sql, (err, result) => {
+	db.query(sql, async (err, result) => {
 		if (err) {
 			res.json(err);
 		} else {
 			if (result.length > 0) {
+				// password authentication
+				const isValidPassword = await bcrypt.compare(password, result[0].password);
+				if (!isValidPassword) return res.status(400).send("Wrong email or password");
 				// create and return a JWT
 				payload = {
 					first_name: result[0].first_name,
@@ -74,7 +76,7 @@ const login = (req, res) => {
 				const token = jwt.sign(payload, "jwtSecret");
 				res.status(200).json({ token: token, user: payload });
 			} else {
-				res.status(401).json({ messsge: "Wrong email or password" });
+				res.status(400).json({ messsge: "Wrong email or password" });
 			}
 		}
 	});
