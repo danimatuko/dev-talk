@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signUp, setLoadingUser } from "../../../redux/auth/authActions";
 import registerSchema from "./registerSchema";
 
 const RegisterForm = ({ history }) => {
-	const dispatch = useDispatch((state) => state.authState);
+	const isAuth = useSelector((state) => state.auth.isAuth);
+
+	useEffect(() => {
+		// redirect to hompage after sucsesseful register
+		isAuth && history.push("/");
+		// eslint-disable-next-line
+	}, [isAuth]);
+
+	const dispatch = useDispatch();
 
 	// react-hook-form -> useForm hook
 	const {
@@ -24,7 +32,6 @@ const RegisterForm = ({ history }) => {
 		dispatch(signUp(data));
 		// reset after form submit
 		e.target.reset();
-		history.push("/");
 	};
 
 	return (

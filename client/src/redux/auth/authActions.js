@@ -9,7 +9,7 @@ export const signUp = (data) => {
 	return async (dispatch) => {
 		try {
 			const res = await axios.post("auth/register", data);
-			if (res.data.token) throw new Error("User alerady exist");
+		//	if (res.data.token) throw new Error("User alerady exist");
 
 			localStorage.setItem("token", res.data.token);
 
