@@ -1,16 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import loginSchema from "./loginSchema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login, setLoadingUser } from "../../../redux/auth/authActions";
-const LoginForm = ({ history }) => {
-	const dispatch = useDispatch((state) => state.authState);
+import { useHistory } from "react-router";
+
+const LoginForm = () => {
+	const isAuth = useSelector((state) => state.auth.isAuth);
+
+	useEffect(() => {
+		// redirect to hompage after sucsesseful login
+		isAuth && history.push("/");
+		// eslint-disable-next-line
+	}, [isAuth]);
+
+	const dispatch = useDispatch();
+
+	// custom error: to check if the form is correctly submitted but the credentials wrong
+	const [credentialsError, setCredentialsError] = useState(null);
+	const history = useHistory();
 
 	// react-hook-form -> useForm hook
 	const {
 		register,
 		handleSubmit,
+		//isSubmitting,
 		formState: { errors }
 	} = useForm({
 		resolver: yupResolver(loginSchema)
@@ -18,12 +33,11 @@ const LoginForm = ({ history }) => {
 
 	// handle submit
 	const onFormSubmit = (data, e) => {
+		setCredentialsError(null);
 		// set loader while fetching data
 		dispatch(setLoadingUser());
 		dispatch(login(data));
-		// reset after form submit
-		e.target.reset();
-		history.push("/");
+		isAuth === false && setCredentialsError("Incorrect email or password!");
 	};
 
 	return (
@@ -65,6 +79,9 @@ const LoginForm = ({ history }) => {
 							<button type="submit" className="btn btn-dark d-block m-auto">
 								Login
 							</button>
+							<p className="text-danger text-center mt-4">
+								{credentialsError && credentialsError}
+							</p>
 						</form>
 					</div>
 				</div>

@@ -4,7 +4,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch } from "react-redux";
 import { signUp, setLoadingUser } from "../../../redux/auth/authActions";
 import registerSchema from "./registerSchema";
-import axios from "axios";
 
 const RegisterForm = ({ history }) => {
 	const dispatch = useDispatch((state) => state.authState);

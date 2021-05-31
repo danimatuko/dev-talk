@@ -1,9 +1,10 @@
 const { db } = require("../database/db");
 const jwt = require("jsonwebtoken");
 const { v4: uuidv4 } = require("uuid");
+const bcrypt = require("bcrypt");
 
 // REGISTER
-const register = (req, res) => {
+const register = async (req, res) => {
 	// check if user is registered
 	let sql = `SELECT email FROM users WHERE email = '${req.body.email}'`;
 	db.query(sql, (err, result) => {
@@ -18,6 +19,13 @@ const register = (req, res) => {
 	const user = req.body;
 	// create and add user id
 	user.user_id = uuidv4();
+	// hash password before saving to DB
+	try {
+		const salt = await bcrypt.genSalt(10);
+		user.password = await bcrypt.hash(user.password, salt);
+	} catch (error) {
+		console.log(error);
+	}
 
 	db.query(
 		sql,
@@ -46,7 +54,7 @@ const login = (req, res) => {
 	const email = req.body.email;
 	const password = req.body.password;
 
-	const sql = `SELECT first_name,last_name,email,user_id
+	const sql = `SELECT *
     FROM users 
     WHERE email='${email}' 
     AND password='${password}'`;
@@ -55,15 +63,19 @@ const login = (req, res) => {
 		if (err) {
 			res.json(err);
 		} else {
-			// create and return a JWT
-			payload = {
-				first_name: result[0].first_name,
-				last_name: result[0].last_name,
-				email: result[0].email,
-				user_id: result[0].user_id
-			};
-			const token = jwt.sign(payload, "jwtSecret");
-			res.header("x-auth-token", token).json({ token: token, user: result[0] });
+			if (result.length > 0) {
+				// create and return a JWT
+				payload = {
+					first_name: result[0].first_name,
+					last_name: result[0].last_name,
+					email: result[0].email,
+					user_id: result[0].user_id
+				};
+				const token = jwt.sign(payload, "jwtSecret");
+				res.status(200).json({ token: token, user: payload });
+			} else {
+				res.status(401).json({ messsge: "Wrong email or password" });
+			}
 		}
 	});
 };

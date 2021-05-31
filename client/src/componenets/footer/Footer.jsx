@@ -10,19 +10,22 @@ const Footer = () => {
 					<ul
 						className="social d-flex justify-content-around w-100 p-0"
 						style={{ listStyle: "none", width: "15%" }}>
-						<a href="https://www.linkedin.com/in/dani-matuko/" target="_blank">
+						<a
+							href="https://www.linkedin.com/in/dani-matuko/"
+							target="_blank"
+							rel="noreferrer">
 							<li>
-								<i class="fab fa-linkedin-in fa-2x text-light"></i>
+								<i className="fab fa-linkedin-in fa-2x text-light"></i>
 							</li>
 						</a>
-						<a href="https://github.com/danimatuko" target="_blank">
+						<a href="https://github.com/danimatuko" target="_blank" rel="noreferrer">
 							<li>
-								<i class="fab fa-twitter fa-2x text-light"></i>
+								<i className="fab fa-twitter fa-2x text-light"></i>
 							</li>
 						</a>
-						<a href="#" target="_blank">
+						<a href="/" target="_blank" rel="noreferrer">
 							<li>
-								<i class="fab fa-instagram fa-2x text-light"></i>
+								<i className="fab fa-instagram fa-2x text-light"></i>
 							</li>
 						</a>
 					</ul>

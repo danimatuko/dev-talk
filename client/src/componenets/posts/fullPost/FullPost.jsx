@@ -6,14 +6,13 @@ import { getPostById } from "../../../redux/post/postActions";
 const FullPost = ({ match }) => {
 	const { post_id } = match.params;
 	const post = useSelector((state) => state.post);
-	const userInfo = useSelector((state) => state.auth.userInfo);
 	const dispatch = useDispatch();
 	const { title, body, imageUrl, date, author } = post;
 
 	useEffect(() => {
 		dispatch(getLoggedInUser);
 		dispatch(getPostById(post_id));
-	}, []);
+	}, [post_id,dispatch]);
 
 	return (
 		<div className="container">
@@ -27,7 +26,7 @@ const FullPost = ({ match }) => {
 						<div className="img-wrapper mt-3 bg-dark">
 							<img
 								src={imageUrl}
-								alt="image"
+								alt="post"
 								style={{ width: "100%", maxHeight: "500px", objectFit: "cover" }}
 							/>
 						</div>

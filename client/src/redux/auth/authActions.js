@@ -35,6 +35,7 @@ export const login = (data) => {
 	The function gets the `dispatch` as an argument. */
 	return async (dispatch) => {
 		try {
+			dispatch(setLoadingUser);
 			const res = await axios.post("auth/login", data);
 			localStorage.setItem("token", res.data.token);
 			dispatch({
@@ -88,7 +89,4 @@ export const setLoadingUser = () => {
 	return { type: authTypes.SET_LOADING_USER };
 };
 
-
-export const getUserByEmail = ()=>{
-	
-}
+export const getUserByEmail = () => {};

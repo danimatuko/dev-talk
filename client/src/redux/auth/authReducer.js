@@ -3,13 +3,15 @@ import authTypes from "./authTypes";
 const initialState = {
 	isAuth: false,
 	userInfo: null,
-	isLoading: false
+	isLoading: false,
+	error:null
 };
 
 const authReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case authTypes.LOGIN_SUCCESS:
 		case authTypes.REGISTER_SUCCESS:
+		case authTypes.AUTH_SUCCESS:
 			return {
 				...state,
 				isAuth: true,
@@ -30,14 +32,6 @@ const authReducer = (state = initialState, action) => {
 			return {
 				...state,
 				isLoading: true
-			};
-
-		case authTypes.AUTH_SUCCESS:
-			return {
-				...state,
-				isAuth: true,
-				isLoading: false,
-				userInfo: action.payload.userInfo
 			};
 
 		case authTypes.LOGOUT:
