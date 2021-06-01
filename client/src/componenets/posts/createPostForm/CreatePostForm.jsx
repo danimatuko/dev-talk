@@ -51,7 +51,7 @@ const CreatePostForm = ({ history }) => {
 			dispatch(showNotify("Your post edited succsessfuly!"));
 		} else {
 			dispatch(addPost(post));
-			dispatch(showNotify("Your post Added succsessfuly!"));
+			dispatch(showNotify("Your post added succsessfuly!"));
 		}
 
 		// reset after form submit
