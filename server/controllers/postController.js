@@ -44,7 +44,7 @@ const updatePost = (req, res) => {
 
 // DELETE POST
 const deletePost = (req, res) => {
-	Post.delete(req.params.post_id)
+	Post.delete(req.params.id)
 		.then((response) => res.json(response))
 		.catch((err) => res.json(err));
 };
