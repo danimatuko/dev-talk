@@ -4,7 +4,8 @@ const {
 	addPost,
 	updatePost,
 	getAllPosts,
-	deletePost
+	deletePost,
+	likePost
 } = require("../controllers/postController");
 const auth = require("../middlewares/auth");
 const router = express.Router();
@@ -22,5 +23,8 @@ router.put("/:post_id", auth, updatePost);
 
 // DELETE POST
 router.delete("/:id", auth, deletePost);
+
+// Like
+router.put("/like=:like/:id", likePost);
 
 module.exports = router;

@@ -2,7 +2,7 @@ const { db } = require("../database/db");
 const getCurrentDate = require("../helpers/getCurrentDate");
 
 class Post {
-	constructor(post_id, user_id, title, body, date, author, imageUrl) {
+	constructor(post_id, user_id, title, body, date, author, imageUrl, likes = 0) {
 		this.post_id = post_id;
 		this.user_id = user_id;
 		this.title = title;
@@ -10,6 +10,7 @@ class Post {
 		this.date = date;
 		this.author = author;
 		this.imageUrl = imageUrl;
+		this.likes = likes;
 	}
 
 	static getAll() {
@@ -90,6 +91,25 @@ class Post {
 				} else {
 					resolve({
 						msg: "post deleted successfully"
+					});
+				}
+			});
+		});
+	}
+
+	static like(id, like) {
+		return new Promise((resolve, reject) => {
+			const sql =
+				like=== "true"
+					? `UPDATE posts SET likes = likes + 1 WHERE post_id = '${id}'`
+					: `UPDATE posts SET likes = likes - 1 WHERE post_id = '${id}'`;
+
+			db.query(sql, (err, result) => {
+				if (err) {
+					reject(err);
+				} else {
+					resolve({
+						msg: like === "true" ? "liked" : "unliked"
 					});
 				}
 			});

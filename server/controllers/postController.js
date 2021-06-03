@@ -49,4 +49,11 @@ const deletePost = (req, res) => {
 		.catch((err) => res.json(err));
 };
 
-module.exports = { getAllPosts, getPostById, addPost, updatePost, deletePost };
+// LIKE
+const likePost = (req, res) => {
+	Post.like(req.params.id, req.params.like)
+		.then((response) => res.json(response))
+		.catch((err) => res.json(err));
+};
+
+module.exports = { getAllPosts, getPostById, addPost, updatePost, deletePost, likePost };
