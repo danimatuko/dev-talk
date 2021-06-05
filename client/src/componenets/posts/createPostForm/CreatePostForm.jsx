@@ -104,7 +104,7 @@ const CreatePostForm = ({ history }) => {
 				<p className="text-danger">{errors.imageUrl?.message}</p>
 			</div>
 
-			<button type="submit" className="btn btn-success">
+			<button type="submit" className="btn btn-dark">
 				{editMode ? "Edit Post" : "Add Post"}
 			</button>
 		</form>

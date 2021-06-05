@@ -37,9 +37,9 @@ const addPost = async (req, res) => {
 // UPDATE POST
 const updatePost = (req, res) => {
 	const post = req.body;
-	Post.update(req.params.post_id, post).then((response) =>
-		res.json(response).catch((err) => res.json(err))
-	);
+	Post.update(req.params.post_id, post)
+		.then((response) => res.json(response))
+		.catch((err) => res.json(err));
 };
 
 // DELETE POST
