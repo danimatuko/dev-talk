@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
 		return res.status(401).json({ msg: "No token , accsess denied" });
 	}
 	try {
-		const decodedToken = jwt.verify(token, "jwtSecret");
+		const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
 		// add the token to the request
 		req.user = decodedToken;
 		next();

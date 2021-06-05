@@ -43,7 +43,7 @@ class User {
 							user_id: user.user_id
 						};
 
-						const token = jwt.sign(payload, "jwtSecret");
+						const token = jwt.sign(payload, process.env.JWT_SECRET);
 						resolve({ token: token, user: payload });
 					}
 				}
@@ -65,7 +65,7 @@ class User {
 							.compare(password, result[0].password)
 							.then((response) => response)
 							.catch((err) => err);
-                            
+
 						if (!isValidPassword) reject({ msg: "Wrong email or password" });
 						// create and return a JWT
 						const payload = {
@@ -74,7 +74,7 @@ class User {
 							email: result[0].email,
 							user_id: result[0].user_id
 						};
-						const token = jwt.sign(payload, "jwtSecret");
+						const token = jwt.sign(payload, process.env.JWT_SECRET);
 						resolve({ token: token, user: payload });
 					} else {
 						reject({ messsge: "Wrong email or password" });
