@@ -1,4 +1,4 @@
-const db = require("./db.config");
+let db = require("./db.config");
 
 const connectToDB = () => {
 	db.connect((err) => {
@@ -6,8 +6,22 @@ const connectToDB = () => {
 		else console.log("Connection Failed! " + err);
 	});
 
+	const handleDisconnect = () => {
+		db.connect((err) => {
+			if (err) {
+				console.log("error when connecting to db:", err);
+				setTimeout(handleDisconnect, 10000);
+			}
+		});
+	};
+
 	db.on("error", (err) => {
 		console.log("[mysql error]", err);
+		if (err.code == "PROTOCOL_CONNECTION_LOST") {
+			handleDisconnect();
+		} else {
+			throw err;
+		}
 	});
 };
 

@@ -1,5 +1,8 @@
 import axios from "axios";
+import checkEnvironment from "../../helpers/checkEnvironment";
 import postTypes from "./postTypes";
+
+const domain = checkEnvironment();
 
 export const addPost = (post) => {
 	/* To dispatch an aysnc action we use `redux-thunk` middleware, 
@@ -7,7 +10,7 @@ export const addPost = (post) => {
 	The function gets the `dispatch` as an argument. */
 	return async (dispatch) => {
 		try {
-			const res = await axios.post("/posts", post);
+			const res = await axios.post(`${domain}/posts`, post);
 			dispatch({
 				type: postTypes.POST_SUCCESS,
 				payload: res.data.post
@@ -27,7 +30,7 @@ export const editPost = (post) => {
 	The function gets the `dispatch` as an argument. */
 	return async (dispatch) => {
 		try {
-			const res = await axios.put(`/posts/${post.post_id}`, post);
+			const res = await axios.put(`${domain}/posts/${post.post_id}`, post);
 			dispatch({
 				type: postTypes.EDIT_POST_SUCCESS,
 				payload: res.data.post
@@ -54,7 +57,7 @@ export const deletePost = (id) => {
 	The function gets the `dispatch` as an argument. */
 	return async (dispatch) => {
 		try {
-			await axios.delete(`/posts/${id}`);
+			await axios.delete(`${domain}/posts/${id}`);
 			dispatch({
 				type: postTypes.DELETE_POST_SUCCESS
 			});
@@ -70,7 +73,7 @@ export const deletePost = (id) => {
 export const getPostById = (post_id) => {
 	return (dispatch) => {
 		axios
-			.get(`/posts/${post_id}`)
+			.get(`${domain}/posts/${post_id}`)
 			.then((res) =>
 				dispatch({
 					type: postTypes.GET_POST_BY_ID_SUCCESS,
