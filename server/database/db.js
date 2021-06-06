@@ -7,6 +7,7 @@ const connectToDB = () => {
 	});
 
 	const handleDisconnect = () => {
+		db = require("./db.config");
 		db.connect((err) => {
 			if (err) {
 				console.log("error when connecting to db:", err);
