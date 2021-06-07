@@ -1,10 +1,6 @@
 var mysql = require("mysql2");
+const dbConfig = require("./db.config");
 
-var pool = mysql.createPool({
-	host: "localhost",
-	user: "root",
-	password: "password",
-	database: "mysqlBlog"
-});
+var pool = mysql.createPool(dbConfig);
 
 module.exports = pool.promise();
