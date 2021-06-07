@@ -10,7 +10,9 @@ const register = (req, res) => {
 
 	// check if user is registered
 	User.isRegistered(req.body.email)
-		.then((response) => res.json(response))
+		.then(([rows, fieldData]) => {
+			if (rows.length) return res.json({ msg: "user already registered", rows: rows });
+		})
 		.catch((err) => res.json(err));
 
 	// create user id
@@ -24,7 +26,18 @@ const register = (req, res) => {
 	const user = new User(user_id, first_name, last_name, email, hashedPassword);
 
 	User.register(user)
-		.then((response) => res.json(response))
+		.then(() => {
+			// create JWT
+			const payload = {
+				first_name: user.first_name,
+				last_name: user.last_name,
+				email: user.email,
+				user_id: user.user_id
+			};
+
+			const token = jwt.sign(payload, process.env.JWT_SECRET);
+			res.json({ token: token, user: payload });
+		})
 		.catch((err) => res.json(err));
 };
 
@@ -33,8 +46,32 @@ const login = (req, res) => {
 	const email = req.body.email;
 	const password = req.body.password;
 
-	User.login(email, password)
-		.then((response) => res.json(response))
+	User.login(email)
+		.then(([rows, fieldData]) => {
+			// if email found
+			if (rows.length > 0) {
+				// password authentication
+				bcrypt
+					.compare(password, rows[0].password)
+					.then((isValidPassword) => {
+						if (!isValidPassword) return res.json({ msg: "Wrong email or password" });
+						// create and return a JWT
+						const payload = {
+							first_name: rows[0].first_name,
+							last_name: rows[0].last_name,
+							email: rows[0].email,
+							user_id: rows[0].user_id
+						};
+
+						const token = jwt.sign(payload, process.env.JWT_SECRET);
+						// return token on success
+						res.json({ token: token, user: payload });
+					})
+					.catch((err) => res.json(err));
+			} else {
+				res.json({ messsge: "Wrong email or password" });
+			}
+		})
 		.catch((err) => res.json(err));
 };
 

@@ -3,7 +3,7 @@ const User = require("../models/User");
 
 const getAllUsers = (req, res) => {
 	User.getAll()
-		.then((users) => res.json(users))
+		.then((result) => res.json(result[0]))
 		.catch((err) => res.json(err));
 };
 
