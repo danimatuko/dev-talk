@@ -1,5 +1,5 @@
-const { db } = require("../database/db");
 const getCurrentDate = require("../helpers/getCurrentDate");
+const db = require("../database/db");
 
 class Post {
 	constructor(post_id, user_id, title, body, date, author, imageUrl, likes = 0) {
@@ -14,93 +14,44 @@ class Post {
 	}
 
 	static getAll() {
-		const sql = "SELECT * FROM posts";
-		return new Promise((resolve, reject) => {
-			db.query(sql, (err, result) => {
-				if (err) {
-					reject(err);
-				} else {
-					resolve(result);
-				}
-			});
-		});
+		return db.execute("SELECT * FROM posts");
 	}
 
 	static getById = (id) => {
 		const sql = `SELECT * FROM posts WHERE post_id='${id}'`;
-		return new Promise((resolve, reject) => {
-			db.query(sql, (err, result) => {
-				if (err) {
-					reject(err);
-				} else {
-					resolve(result[0]);
-				}
-			});
-		});
+		return db.execute(sql);
 	};
 
 	create(post) {
-		return new Promise((reslove, reject) => {
-			// prepare query
-			const sql = "INSERT INTO posts VALUES (?,?,?,?,?,?,?)";
-
-			db.query(
-				sql,
-				[
-					post.post_id,
-					post.user_id,
-					post.title,
-					post.body,
-					post.date,
-					post.author,
-					post.imageUrl
-				],
-				(err, result) => {
-					if (err) {
-						reject(err);
-					} else {
-						reslove(result);
-					}
-				}
-			);
-		});
+		return db.execute(`INSERT INTO posts VALUES (?,?,?,?,?,?,?)`, [
+			post.post_id,
+			post.user_id,
+			post.title,
+			post.body,
+			post.date,
+			post.author,
+			post.imageUrl
+		]);
 	}
 
 	static update(id, post) {
-		return new Promise((resolve, reject) => {
-			const sql = `UPDATE posts SET ? WHERE post_id='${id}'`;
-			// update current date
-			post.date = getCurrentDate();
+		// update current date
+		post.date = getCurrentDate();
 
-			db.query(sql, post, (err, result) => {
-				if (err) {
-					reject(err);
-				} else {
-					resolve({ msg: "post edited successfully", post: post });
-				}
-			});
-		});
+		return db.execute(
+			`UPDATE posts SET title=?,body=?,date=?,imageUrl=? WHERE post_id='${id}'`,
+			[post.title, post.body, post.date, post.imageUrl]
+		);
 	}
 
 	static delete(id) {
-		return new Promise((resolve, reject) => {
-			const sql = `DELETE FROM posts WHERE post_id = '${id}'`;
-			db.query(sql, (err, result) => {
-				if (err) {
-					reject(err);
-				} else {
-					resolve({
-						msg: "post deleted successfully"
-					});
-				}
-			});
-		});
+		return db.execute(`DELETE FROM posts WHERE post_id = '${id}'`);
 	}
 
 	static like(id, like) {
 		return new Promise((resolve, reject) => {
 			const sql =
-				like=== "true"
+				like === "true"
 					? `UPDATE posts SET likes = likes + 1 WHERE post_id = '${id}'`
 					: `UPDATE posts SET likes = likes - 1 WHERE post_id = '${id}'`;
 

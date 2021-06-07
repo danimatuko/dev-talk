@@ -1,29 +1,10 @@
-let db = require("./db.config");
+var mysql = require("mysql2");
 
-const connectToDB = () => {
-	db.connect((err) => {
-		if (!err) console.log("Connection Established Successfully");
-		else console.log("Connection Failed! " + err);
-	});
+var pool = mysql.createPool({
+	host: "localhost",
+	user: "root",
+	password: "password",
+	database: "mysqlBlog"
+});
 
-	const handleDisconnect = () => {
-		db = require("./db.config");
-		db.connect((err) => {
-			if (err) {
-				console.log("error when connecting to db:", err);
-				setTimeout(handleDisconnect, 10000);
-			}
-		});
-	};
-
-	db.on("error", (err) => {
-		console.log("[mysql error]", err);
-		if (err.code == "PROTOCOL_CONNECTION_LOST") {
-			handleDisconnect();
-		} else {
-			throw err;
-		}
-	});
-};
-
-module.exports = { db, connectToDB };
+module.exports = pool.promise();
