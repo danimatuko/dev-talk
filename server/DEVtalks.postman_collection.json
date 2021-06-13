@@ -1,0 +1,312 @@
+{
+	"info": {
+		"_postman_id": "a7bd1e2a-0e9b-4654-985e-91cb633d2d0a",
+		"name": "DEVtalks",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "posts",
+			"item": [
+				{
+					"name": "get post by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/posts/bb700188-ea0d-40a3-9828-6f9990f6c605",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"posts",
+								"bb700188-ea0d-40a3-9828-6f9990f6c605"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdF9uYW1lIjoiTGF1cmVuIiwibGFzdF9uYW1lIjoiSGlsbCIsImVtYWlsIjoiaGlsbEBnbWFpbC5jb20iLCJ1c2VyX2lkIjoiYTA3M2NkMmYtNjI0ZC00YmM3LTkxMTEtM2RmYzYxZDgxODAxIiwiaWF0IjoxNjIyODMxNTA1fQ.oyR8qqeEEpSEbZRB5qqw5UAQuk4zhjIfuJNw0_aFxkg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\":\"the best \",\n    \"body\":\"this is the new post\",\n    \"imageUrl\":\"https://images.unsplash.com/photo-1621356312169-10ea2bfbada2?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDF8RnpvM3p1T0hONnd8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update post",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdF9uYW1lIjoiYW15IiwibGFzdF9uYW1lIjoid29vZHMiLCJlbWFpbCI6ImFteUBnbWFpbC5jb20iLCJ1c2VyX2lkIjoiMWMzM2E2MzctZjhlMi00MzQ5LWJkMzQtZGUxYTg2MzE1YzBmIiwiaWF0IjoxNjIxNzcyOTE1fQ.bTBzEOKZcjb-OND3sC5gqGJb28xOgYjvYAJPs3M7vxQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n        \"title\": \"About data science...\",\n        \"body\": \"Now I will not be going too much into what GraphQL exactly is but what you should know is that it is a query language for your APIs that is fundamentally different from the good ol' RESTful APIs. In GQL, we make a post request to our API rather than making different requests for different endpoints.\\nFor fetching different data, we can just make a post request to a single endpoint for the API specifying what data we need in the query that we pass in.\\n\\nNow I will not be going too much into what GraphQL exactly is but what you should know is that it is a query language for your APIs that is fundamentally different from the good ol' RESTful APIs. In GQL, we make a post request to our API rather than making different requests for different endpoints.\\nFor fetching different data, we can just make a post request to a single endpoint for the API specifying what data we need in the query that we pass in.\\n\\n****EDIT****\\n\\nNow I will not be going too much into what GraphQL exactly is but what you should know is that it is a query language for your APIs that is fundamentally different from the good ol' RESTful APIs. In GQL, we make a post request to our API rather than making different requests for different endpoints.\\nFor fetching different data, we can just make a post request to a single endpoint for the API specifying what data we need in the query that we pass in. Thnaks for reading!\",\n        \"imageUrl\": \"https://images.unsplash.com/photo-1512300742962-e772c787f2b9?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDE4fEZ6bzN6dU9ITjZ3fHxlbnwwfHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/posts/e46c6758-4dfe-438d-83c6-82ac6e27d141",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"posts",
+								"e46c6758-4dfe-438d-83c6-82ac6e27d141"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete post",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdF9uYW1lIjoiRGFuaSIsImxhc3RfbmFtZSI6Ik1hdHVrbyIsImVtYWlsIjoibWF0dWtvMzA1QGdtYWlsLmNvbSIsInVzZXJfaWQiOiI4MGQzMjdjNy1kMDhkLTQ0NWQtODBmMi0zNmM3ZmQ2NDA1MDIiLCJpYXQiOjE2MjI1NzY2ODd9.SEJvYGGc8jEtWyl_iI2tdoNAzAQ5dx3zHk1VlVTYFHM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/posts/d31541d3-6d49-4895-96f0-c04c3d6b6c23",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"posts",
+								"d31541d3-6d49-4895-96f0-c04c3d6b6c23"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "like",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/posts/like=false/27ab2c6c-dc83-423b-982e-d6e53f8d7945",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"posts",
+								"like=false",
+								"27ab2c6c-dc83-423b-982e-d6e53f8d7945"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\":\"Earl\",\n    \"last_name\":\"Simmons\",\n    \"email\":\"simmons@gmail.com\",\n    \"password\":\"123456\",\n    \"confirm_password\":\"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"hill@gmail.com\",\n    \"password\":\"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "auth",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdF9uYW1lIjoiQW15IiwibGFzdF9uYW1lIjoiV2FkZSIsImVtYWlsIjoiYW15QGdtYWlsLmNvbSIsImlhdCI6MTYyMTYxNTI3OX0.qgZnwlwJ1t4W18HohAhD-B4HftVnuqzfDZf3pGTKIEU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "profile",
+			"item": [
+				{
+					"name": "dashboard (get user's posts)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdF9uYW1lIjoiTGF1cmVuIiwibGFzdF9uYW1lIjoiSGlsbCIsImVtYWlsIjoiaGlsbEBnbWFpbC5jb20iLCJ1c2VyX2lkIjoiYTA3M2NkMmYtNjI0ZC00YmM3LTkxMTEtM2RmYzYxZDgxODAxIiwiaWF0IjoxNjIzMDYyMDc3fQ.yRcLnwm_eFGzfRn6_nrmJ_38WW5OD9uQk9PujLyiRag",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/profile/dashboard",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"profile",
+								"dashboard"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "get all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
