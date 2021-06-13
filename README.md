@@ -49,6 +49,8 @@ cd client
 npm start
 ```
 
+#### Postman file for testing
+Open postman and import the file from server/DEVtalks.postman_collection.json 
 
 
 
